@@ -1,0 +1,7 @@
+royalnet>=5.0
+starlette>=0.12.13
+aiohttp>=3.6.2
+sqlalchemy>=1.3.10
+dateparser>=0.7.2
+python_telegram_bot>=12.2.0
+discord.py>=1.3.0
