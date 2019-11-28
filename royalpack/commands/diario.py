@@ -1,14 +1,15 @@
-import typing
 import re
 import datetime
 import telegram
 import aiohttp
+from typing import *
 from royalnet.commands import *
 from royalnet.utils import asyncify
-from ..tables import User, Diario, Alias
+from royalnet.backpack.tables import *
+from ..tables import *
 
 
-async def to_imgur(imgur_api_key, photosizes: typing.List[telegram.PhotoSize], caption="") -> str:
+async def to_imgur(imgur_api_key, photosizes: List[telegram.PhotoSize], caption="") -> str:
     # Select the largest photo
     largest_photo = sorted(photosizes, key=lambda p: p.width * p.height)[-1]
     # Get the photo url
@@ -35,8 +36,6 @@ class DiarioCommand(Command):
 
     syntax = "[!] \"{testo}\" --[autore], [contesto]"
 
-    tables = {User, Diario, Alias}
-
     async def run(self, args: CommandArgs, data: CommandData) -> None:
         if self.interface.name == "telegram":
             update: telegram.Update = data.update
@@ -44,15 +43,15 @@ class DiarioCommand(Command):
             reply: telegram.Message = message.reply_to_message
             creator = await data.get_author()
             # noinspection PyUnusedLocal
-            quoted: typing.Optional[str]
+            quoted: Optional[str]
             # noinspection PyUnusedLocal
-            text: typing.Optional[str]
+            text: Optional[str]
             # noinspection PyUnusedLocal
-            context: typing.Optional[str]
+            context: Optional[str]
             # noinspection PyUnusedLocal
             timestamp: datetime.datetime
             # noinspection PyUnusedLocal
-            media_url: typing.Optional[str]
+            media_url: Optional[str]
             # noinspection PyUnusedLocal
             spoiler: bool
             if creator is None:
@@ -62,19 +61,19 @@ class DiarioCommand(Command):
                 # Get the message text
                 text = reply.text
                 # Check if there's an image associated with the reply
-                photosizes: typing.Optional[typing.List[telegram.PhotoSize]] = reply.photo
+                photosizes: Optional[List[telegram.PhotoSize]] = reply.photo
                 if photosizes:
                     # Text is a caption
                     text = reply.caption
-                    media_url = await to_imgur(self.interface.bot.get_secret("imgur"),
+                    media_url = await to_imgur(self.interface.cfg["Imgur"]["token"],
                                                photosizes, text if text is not None else "")
                 else:
                     media_url = None
                 # Ensure there is a text or an image
                 if not (text or media_url):
-                    raise InvalidInputError("Missing text.")
+                    raise InvalidInputError("Il messaggio a cui hai risposto non contiene testo o immagini.")
                 # Find the Royalnet account associated with the sender
-                quoted_tg = await asyncify(data.session.query(self.interface.alchemy.Telegram)
+                quoted_tg = await asyncify(data.session.query(self.alchemy.get(Telegram))
                                            .filter_by(tg_id=reply.from_user.id)
                                            .one_or_none)
                 quoted_account = quoted_tg.royal if quoted_tg is not None else None
@@ -92,9 +91,9 @@ class DiarioCommand(Command):
                 # Get the message text
                 raw_text = " ".join(args)
                 # Check if there's an image associated with the reply
-                photosizes: typing.Optional[typing.List[telegram.PhotoSize]] = message.photo
+                photosizes: Optional[List[telegram.PhotoSize]] = message.photo
                 if photosizes:
-                    media_url = await to_imgur(self.interface.bot.get_secret("imgur"),
+                    media_url = await to_imgur(self.interface.cfg["Imgur"]["token"],
                                                photosizes, raw_text if raw_text is not None else "")
                 else:
                     media_url = None
@@ -124,8 +123,9 @@ class DiarioCommand(Command):
                     # Find if there's a Royalnet account associated with the quoted name
                     if quoted is not None:
                         quoted_alias = await asyncify(
-                            data.session.query(self.interface.alchemy.Alias)
-                                               .filter_by(alias=quoted.lower()).one_or_none)
+                            data.session.query(self.alchemy.get(Alias))
+                                        .filter_by(alias=quoted.lower()).one_or_none
+                        )
                     else:
                         quoted_alias = None
                     quoted_account = quoted_alias.royal if quoted_alias is not None else None
@@ -137,16 +137,16 @@ class DiarioCommand(Command):
                     context = None
                 # Ensure there is a text or an image
                 if not (text or media_url):
-                    raise InvalidInputError("Missing text.")
+                    raise InvalidInputError("Manca il testo o l'immagine da inserire nel diario.")
             # Create the diario quote
-            diario = self.interface.alchemy.Diario(creator=creator,
-                                                   quoted_account=quoted_account,
-                                                   quoted=quoted,
-                                                   text=text,
-                                                   context=context,
-                                                   timestamp=timestamp,
-                                                   media_url=media_url,
-                                                   spoiler=spoiler)
+            diario = self.alchemy.get(Diario)(creator=creator,
+                                              quoted_account=quoted_account,
+                                              quoted=quoted,
+                                              text=text,
+                                              context=context,
+                                              timestamp=timestamp,
+                                              media_url=media_url,
+                                              spoiler=spoiler)
             data.session.add(diario)
             await asyncify(data.session.commit)
             await data.reply(f"✅ {str(diario)}")
@@ -173,7 +173,7 @@ class DiarioCommand(Command):
             timestamp = datetime.datetime.now()
             # Ensure there is some text
             if not text:
-                raise InvalidInputError("Missing text.")
+                raise InvalidInputError("Manca il testo o l'immagine da inserire nel diario.")
             # Or a quoted
             if not quoted:
                 quoted = None
@@ -182,25 +182,25 @@ class DiarioCommand(Command):
             # Find if there's a Royalnet account associated with the quoted name
             if quoted is not None:
                 quoted_alias = await asyncify(
-                    data.session.query(self.interface.alchemy.Alias)
-                                           .filter_by(alias=quoted.lower())
-                                           .one_or_none)
+                    data.session.query(self.alchemy.get(Alias))
+                                .filter_by(alias=quoted.lower())
+                                .one_or_none
+                )
             else:
                 quoted_alias = None
             quoted_account = quoted_alias.royal if quoted_alias is not None else None
             if quoted_alias is not None and quoted_account is None:
-                await data.reply("⚠️ Il nome dell'autore è ambiguo, quindi la riga non è stata aggiunta.\n"
-                                 "Per piacere, ripeti il comando con un nome più specifico!")
-                return
+                raise UserError("Il nome dell'autore è ambiguo, quindi la riga non è stata aggiunta.\n"
+                                "Per piacere, ripeti il comando con un nome più specifico!")
             # Create the diario quote
-            diario = self.interface.alchemy.Diario(creator=creator,
-                                                   quoted_account=quoted_account,
-                                                   quoted=quoted,
-                                                   text=text,
-                                                   context=context,
-                                                   timestamp=timestamp,
-                                                   media_url=None,
-                                                   spoiler=spoiler)
+            diario = self.alchemy.Diario(creator=creator,
+                                         quoted_account=quoted_account,
+                                         quoted=quoted,
+                                         text=text,
+                                         context=context,
+                                         timestamp=timestamp,
+                                         media_url=None,
+                                         spoiler=spoiler)
             data.session.add(diario)
             await asyncify(data.session.commit)
             await data.reply(f"✅ {str(diario)}")

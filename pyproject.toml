@@ -19,7 +19,20 @@
 # Library dependencies
 [tool.poetry.dependencies]
     python = "^3.8"
-    royalnet = {path="../royalnet/dist/royalnet-5.1a1.tar.gz"}
+
+    [tool.poetry.dependencies.royalnet]
+        git = "https://github.com/Steffo99/royalnet/"
+        # Maybe... there is a way to make these selectable?
+        extras = [
+            "telegram",
+            "discord",
+            "alchemy_easy",
+            "bard",
+            "constellation",
+            "sentry",
+            "herald",
+            "coloredlogs"
+        ]
 
 # Development dependencies
 [tool.poetry.dev-dependencies]

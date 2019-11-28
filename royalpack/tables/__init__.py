@@ -1,8 +1,4 @@
 # Imports go here!
-from royalnet.packs.common.tables import User
-from royalnet.packs.common.tables import Telegram
-from royalnet.packs.common.tables import Discord
-
 from .diario import Diario
 from .aliases import Alias
 from .wikipages import WikiPage
@@ -16,9 +12,6 @@ from .leagueoflegends import LeagueOfLegends
 
 # Enter the tables of your Pack here!
 available_tables = [
-    User,
-    Telegram,
-    Discord,
     Diario,
     Alias,
     WikiPage,

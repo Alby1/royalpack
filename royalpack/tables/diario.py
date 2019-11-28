@@ -83,8 +83,9 @@ class Diario:
                       f" spoiler={self.spoiler}>"
 
     def __str__(self):
-        text = f"Riga #{self.diario_id}"
-        text += f" (salvata da {str(self.creator)}"
+        text = f"Riga #{self.diario_id} (salvata"
+        if self.creator is not None:
+            text += f" da {str(self.creator)}"
         text += f" il {self.timestamp.strftime('%Y-%m-%d %H:%M')}):\n"
         if self.media_url is not None:
             text += f"{self.media_url}\n"
