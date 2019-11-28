@@ -1,7 +1,7 @@
 # Imports go here!
 from .ciaoruozi import CiaoruoziCommand
 from .color import ColorCommand
-# from .cv import CvCommand
+from .cv import CvCommand
 from .diario import DiarioCommand
 # from .rage import RageCommand
 # from .reminder import ReminderCommand
@@ -29,7 +29,7 @@ from .peertube import PeertubeCommand
 available_commands = [
     CiaoruoziCommand,
     ColorCommand,
-    # CvCommand,
+    CvCommand,
     DiarioCommand,
     # RageCommand,
     # ReminderCommand,

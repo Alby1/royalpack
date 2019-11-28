@@ -1,9 +1,9 @@
 # Imports go here!
-
+from .discord_cv import DiscordCvEvent
 
 # Enter the commands of your Pack here!
 available_events = [
-
+    DiscordCvEvent,
 ]
 
 # noinspection PyUnreachableCode
