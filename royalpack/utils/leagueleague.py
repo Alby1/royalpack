@@ -70,6 +70,10 @@ class LeagueLeague:
             return True
         if not isinstance(other, LeagueLeague):
             raise TypeError(f"Can't compare {self.__class__.__qualname__} with {other.__class__.__qualname__}")
+        if self.empty:
+            return False
+        elif other.empty:
+            return True
         if not (bool(self) and bool(other)):
             raise ValueError("Can't compare partial LeagueLeagues.")
         if self.tier != other.tier:
@@ -98,6 +102,20 @@ class LeagueLeague:
         result &= self.points is not None
         result &= self.rank is not None
         result &= self.tier is not None
+        return result
+
+    @property
+    def empty(self):
+        result = True
+        result &= self.veteran is None
+        result &= self.fresh_blood is None
+        result &= self.hot_streak is None
+        result &= self.inactive is None
+        result &= self.losses is None
+        result &= self.wins is None
+        result &= self.points is None
+        result &= self.rank is None
+        result &= self.tier is None
         return result
 
     def __composite_values__(self):

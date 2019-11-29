@@ -154,9 +154,23 @@ class CvCommand(Command):
             name = member['name']
 
         activity = ""
-        if len(member["activities"]) >= 1:
-            # TODO: how to render activities now?
-            ...
+        for mact in member["activities"]:
+            # Playing
+            if mact["type"] == 0:
+                activity += f" | 🎮 {mact['name']}"
+                if "state" in mact and "details" in mact:
+                    activity += f" ({mact['state']} | {mact['details']})"
+                elif "state" in mact:
+                    activity += f" ({mact['state']})"
+                elif "details" in mact:
+                    activity += f" ({mact['details']})"
+                activity += "\n"
+            # Custom Status
+            elif mact["type"] == 4:
+                activity += f" | ❓ {mact['state']}"
+            else:
+                # TODO: what other activity types are there?
+                breakpoint()
 
         return f"{status}{voice} {name}{activity}\n"
 
@@ -233,7 +247,7 @@ class CvCommand(Command):
                 draw = True
 
                 for role in member["roles"]:
-                    if role["id"] == self.interface.cfg["Cv"]["displayed_role_id"]:
+                    if role["id"] == self.interface.config["Cv"]["displayed_role_id"]:
                         break
                 else:
                     if display_only_role:

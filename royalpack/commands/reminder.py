@@ -6,7 +6,9 @@ import telegram
 import discord
 from sqlalchemy import and_
 from royalnet.commands import *
-from royalnet.utils import sleep_until, asyncify, telegram_escape, discord_escape
+from royalnet.utils import *
+from royalnet.serf.telegram import escape as telegram_escape
+from royalnet.serf.discord import escape as discord_escape
 from ..tables import Reminder
 
 
@@ -19,16 +21,14 @@ class ReminderCommand(Command):
 
     syntax: str = "[ {data} ] {messaggio}"
 
-    tables = {Reminder}
-
     def __init__(self, interface: CommandInterface):
         super().__init__(interface)
         session = interface.alchemy.Session()
         reminders = (
-            session.query(interface.alchemy.Reminder)
+            session.query(interface.alchemy.get(Reminder))
                    .filter(and_(
-                       interface.alchemy.Reminder.datetime >= datetime.datetime.now(),
-                       interface.alchemy.Reminder.interface_name == interface.name))
+                       interface.alchemy.get(Reminder).datetime >= datetime.datetime.now(),
+                       interface.alchemy.get(Reminder).interface_name == interface.name))
                    .all()
         )
         for reminder in reminders:
@@ -38,16 +38,16 @@ class ReminderCommand(Command):
         await sleep_until(reminder.datetime)
         if self.interface.name == "telegram":
             chat_id: int = pickle.loads(reminder.raw_interface_data)
-            bot: telegram.Bot = self.interface.bot.client
-            await asyncify(bot.send_message,
-                           chat_id=chat_id,
-                           text=telegram_escape(f"❗️ {reminder.message}"),
-                           parse_mode="HTML",
-                           disable_web_page_preview=True)
+            client: telegram.Bot = self.serf.client
+            await self.serf.api_call(client.send_message,
+                                     chat_id=chat_id,
+                                     text=telegram_escape(f"❗️ {reminder.message}"),
+                                     parse_mode="HTML",
+                                     disable_web_page_preview=True)
         elif self.interface.name == "discord":
             channel_id: int = pickle.loads(reminder.raw_interface_data)
-            bot: discord.Client = self.interface.bot.client
-            channel = bot.get_channel(channel_id)
+            client: discord.Client = self.serf.client
+            channel = client.get_channel(channel_id)
             await channel.send(discord_escape(f"❗️ {reminder.message}"))
 
     async def run(self, args: CommandArgs, data: CommandData) -> None:

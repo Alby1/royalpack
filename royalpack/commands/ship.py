@@ -1,7 +1,5 @@
-import typing
 import re
 from royalnet.commands import *
-from royalnet.utils import safeformat
 
 
 class ShipCommand(Command):
@@ -34,7 +32,4 @@ class ShipCommand(Command):
             part_two = match_two.group(0)
         # Combine the two name parts
         mixed = part_one + part_two
-        await data.reply(safeformat("💕 {one} + {two} = [b]{result}[/b]",
-                                    one=name_one.capitalize(),
-                                    two=name_two.capitalize(),
-                                    result=mixed.capitalize()))
+        await data.reply(f"💕 {part_one.capitalize()} + {part_two.capitalize()} = [b]{mixed.capitalize()}[/b]")

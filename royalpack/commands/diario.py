@@ -65,7 +65,7 @@ class DiarioCommand(Command):
                 if photosizes:
                     # Text is a caption
                     text = reply.caption
-                    media_url = await to_imgur(self.interface.cfg["Imgur"]["token"],
+                    media_url = await to_imgur(self.interface.config["Imgur"]["token"],
                                                photosizes, text if text is not None else "")
                 else:
                     media_url = None
@@ -93,7 +93,7 @@ class DiarioCommand(Command):
                 # Check if there's an image associated with the reply
                 photosizes: Optional[List[telegram.PhotoSize]] = message.photo
                 if photosizes:
-                    media_url = await to_imgur(self.interface.cfg["Imgur"]["token"],
+                    media_url = await to_imgur(self.interface.config["Imgur"]["token"],
                                                photosizes, raw_text if raw_text is not None else "")
                 else:
                     media_url = None

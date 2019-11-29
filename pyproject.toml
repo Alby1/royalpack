@@ -20,6 +20,8 @@
 [tool.poetry.dependencies]
     python = "^3.8"
 
+    riotwatcher = "^2.7.1"
+
     [tool.poetry.dependencies.royalnet]
         git = "https://github.com/Steffo99/royalnet/"
         # Maybe... there is a way to make these selectable?

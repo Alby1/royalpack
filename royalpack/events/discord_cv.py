@@ -70,7 +70,7 @@ class DiscordCvEvent(Event):
                     "mobile": member.mobile_status.value,
                     "web": member.web_status.value,
                 },
-                "activities": [],
+                "activities": [activity.to_dict() for activity in member.activities if activity is not None],
                 "roles": [{
                     "id": role.id,
                     "name": role.name,
@@ -80,9 +80,6 @@ class DiscordCvEvent(Event):
                     "mentionable": role.mentionable,
                 } for role in member.roles]
             }
-
-            for activity in member.activities:
-                ...
 
             results.append(data)
 

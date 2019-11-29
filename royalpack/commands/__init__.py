@@ -3,10 +3,10 @@ from .ciaoruozi import CiaoruoziCommand
 from .color import ColorCommand
 from .cv import CvCommand
 from .diario import DiarioCommand
-# from .rage import RageCommand
-# from .reminder import ReminderCommand
-# from .ship import ShipCommand
-# from .smecds import SmecdsCommand
+from .rage import RageCommand
+from .reminder import ReminderCommand
+from .ship import ShipCommand
+from .smecds import SmecdsCommand
 # from .videochannel import VideochannelCommand
 # from .trivia import TriviaCommand
 # from .matchmaking import MatchmakingCommand
@@ -20,7 +20,7 @@ from .diario import DiarioCommand
 # from .soundcloud import SoundcloudCommand
 # from .zawarudo import ZawarudoCommand
 from .emojify import EmojifyCommand
-# from .leagueoflegends import LeagueoflegendsCommand
+from .leagueoflegends import LeagueoflegendsCommand
 from .diarioquote import DiarioquoteCommand
 # from .mp3 import Mp3Command
 from .peertube import PeertubeCommand
@@ -31,10 +31,10 @@ available_commands = [
     ColorCommand,
     CvCommand,
     DiarioCommand,
-    # RageCommand,
-    # ReminderCommand,
-    # ShipCommand,
-    # SmecdsCommand,
+    RageCommand,
+    ReminderCommand,
+    ShipCommand,
+    SmecdsCommand,
     # VideochannelCommand,
     # TriviaCommand,
     # MatchmakingCommand,
@@ -48,7 +48,7 @@ available_commands = [
     # SoundcloudCommand,
     # ZawarudoCommand,
     EmojifyCommand,
-    # LeagueoflegendsCommand,
+    LeagueoflegendsCommand,
     DiarioquoteCommand,
     # Mp3Command,
     PeertubeCommand,
