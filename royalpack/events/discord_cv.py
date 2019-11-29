@@ -7,7 +7,7 @@ from royalnet.commands import *
 class DiscordCvEvent(Event):
     name = "discord_cv"
 
-    async def run(self, guild_id: Optional[int] = None, **kwargs):
+    async def run(self, guild_id: Optional[int] = None, **kwargs) -> dict:
         if not self.interface.name == "discord":
             raise UnsupportedError()
 
@@ -47,6 +47,11 @@ class DiscordCvEvent(Event):
                         "category": {
                             "id": member.voice.channel.category_id,
                             "name": member.voice.channel.category.name,
+                            "position": member.voice.channel.category.position,
+                        } if member.voice.channel.category is not None else {
+                            "id": None,
+                            "name": None,
+                            "position": -1,
                         },
                         "bitrate": member.voice.channel.bitrate,
                         "user_limit": member.voice.channel.user_limit,
@@ -60,12 +65,12 @@ class DiscordCvEvent(Event):
                     "afk": member.voice.afk,
                 } if member.voice is not None else None,
                 "status": {
-                    "main": member.status,
-                    "desktop": member.desktop_status,
-                    "mobile": member.mobile_status,
-                    "web": member.web_status,
+                    "main": member.status.value,
+                    "desktop": member.desktop_status.value,
+                    "mobile": member.mobile_status.value,
+                    "web": member.web_status.value,
                 },
-                "activities": [activity.to_dict() for activity in member.activities if activity is not None],
+                "activities": [],
                 "roles": [{
                     "id": role.id,
                     "name": role.name,
@@ -76,6 +81,15 @@ class DiscordCvEvent(Event):
                 } for role in member.roles]
             }
 
+            for activity in member.activities:
+                ...
+
             results.append(data)
 
-        return results
+        return {
+            "guild": {
+                "id": guild.id,
+                "name": guild.name,
+                "members": results,
+            }
+        }
