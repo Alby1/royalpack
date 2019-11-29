@@ -7,108 +7,7 @@ class CvCommand(Command):
 
     description: str = "Elenca le persone attualmente connesse alla chat vocale."
 
-    syntax: str = "[guildname] [all]"
-
-    # @staticmethod
-    # async def _legacy_cv_handler(bot: DiscordBot, guild_name: typing.Optional[str], everyone: bool):
-    #     # Find the matching guild
-    #     if guild_name:
-    #         guilds: typing.List[discord.Guild] = bot.client.find_guild_by_name(guild_name)
-    #     else:
-    #         guilds = bot.client.guilds
-    #     if len(guilds) == 0:
-    #         raise CommandError("No guilds with the specified name found.")
-    #     if len(guilds) > 1:
-    #         raise CommandError("Multiple guilds with the specified name found.")
-    #     guild = list(bot.client.guilds)[0]
-    #     # Edit the message, sorted by channel
-    #     discord_members = list(guild.members)
-    #     channels = {0: None}
-    #     members_in_channels = {0: []}
-    #     message = ""
-    #     # Find all the channels
-    #     for member in discord_members:
-    #         if member.voice is not None:
-    #             channel = members_in_channels.get(member.voice.channel.id)
-    #             if channel is None:
-    #                 members_in_channels[member.voice.channel.id] = list()
-    #                 channel = members_in_channels[member.voice.channel.id]
-    #                 channels[member.voice.channel.id] = member.voice.channel
-    #             channel.append(member)
-    #         else:
-    #             members_in_channels[0].append(member)
-    #     # Edit the message, sorted by channel
-    #     for channel in sorted(channels, key=lambda c: -c):
-    #         members_in_channels[channel].sort(key=lambda x: x.nick if x.nick is not None else x.name)
-    #         if channel == 0 and len(members_in_channels[0]) > 0:
-    #             message += "[b]Non in chat vocale:[/b]\n"
-    #         else:
-    #             message += f"[b]In #{channels[channel].name}:[/b]\n"
-    #         for member in members_in_channels[channel]:
-    #             member: typing.Union[discord.User, discord.Member]
-    #             # Ignore not-connected non-notable members
-    #             if not everyone and channel == 0 and len(member.roles) < 2:
-    #                 continue
-    #             # Ignore offline members
-    #             if member.status == discord.Status.offline and member.voice is None:
-    #                 continue
-    #             # Online status emoji
-    #             if member.bot:
-    #                 message += "🤖 "
-    #             elif member.status == discord.Status.online:
-    #                 message += "🔵 "
-    #             elif member.status == discord.Status.idle:
-    #                 message += "⚫ "
-    #             elif member.status == discord.Status.dnd:
-    #                 message += "🔴 "
-    #             elif member.status == discord.Status.offline:
-    #                 message += "⚪ "
-    #             # Voice
-    #             if channel != 0:
-    #                 # Voice status
-    #                 if member.voice.afk:
-    #                     message += "💤 "
-    #                 elif member.voice.self_deaf or member.voice.deaf:
-    #                     message += "🔇 "
-    #                 elif member.voice.self_mute or member.voice.mute:
-    #                     message += "🔈 "
-    #                 elif member.voice.self_video or member.voice.self_stream:
-    #                     message += "🖥 "
-    #                 else:
-    #                     message += "🔊 "
-    #             # Nickname
-    #             # if member.nick is not None:
-    #             #     message += f"[i]{member.nick}[/i]"
-    #             # else:
-    #             message += member.name
-    #             # Game or stream
-    #             if member.activity is not None:
-    #                 if member.activity.type == discord.ActivityType.playing:
-    #                     message += f" | 🎮 {member.activity.name}"
-    #                     # Rich presence
-    #                     try:
-    #                         if member.activity.state is not None:
-    #                             message += f" ({member.activity.state}" \
-    #                                        f" | {member.activity.details})"
-    #                     except AttributeError:
-    #                         pass
-    #                 elif member.activity.type == discord.ActivityType.streaming:
-    #                     message += f" | 📡 {member.activity.url}"
-    #                 elif member.activity.type == discord.ActivityType.listening:
-    #                     if isinstance(member.activity, discord.Spotify):
-    #                         if member.activity.title == member.activity.album:
-    #                             message += f" | 🎧 {member.activity.title} ({andformat(member.activity.artists, final=' e ')})"
-    #                         else:
-    #                             message += f" | 🎧 {member.activity.title} ({member.activity.album} | {andformat(member.activity.artists, final=' e ')})"
-    #                     else:
-    #                         message += f" | 🎧 {member.activity.name}"
-    #                 elif member.activity.type == discord.ActivityType.watching:
-    #                     message += f" | 📺 {member.activity.name}"
-    #                 else:
-    #                     message += f" | ❓ {member.activity.state}"
-    #             message += "\n"
-    #         message += "\n"
-    #     return {"response": message}
+    syntax: str = "[a][o][n][d][h]"
 
     def __init__(self, interface: CommandInterface):
         super().__init__(interface)
@@ -155,8 +54,11 @@ class CvCommand(Command):
 
         activity = ""
         for mact in member["activities"]:
+            # Spotify
+            if "type" not in mact:
+                activity += f" | 🎧 {mact['details']} ({mact['state']})"
             # Playing
-            if mact["type"] == 0:
+            elif mact["type"] == 0:
                 activity += f" | 🎮 {mact['name']}"
                 if "state" in mact and "details" in mact:
                     activity += f" ({mact['state']} | {mact['details']})"
@@ -164,13 +66,20 @@ class CvCommand(Command):
                     activity += f" ({mact['state']})"
                 elif "details" in mact:
                     activity += f" ({mact['details']})"
-                activity += "\n"
+            # Streaming
+            elif mact["type"] == 1:
+                activity += f" | 🎥 {mact['name']}"
+            # Listening
+            elif mact["type"] == 2:
+                activity += f" | 🎧 {mact['name']}"
+            # Watching
+            elif mact["type"] == 3:
+                activity += f" | 📺 {mact['name']}"
             # Custom Status
             elif mact["type"] == 4:
                 activity += f" | ❓ {mact['state']}"
             else:
-                # TODO: what other activity types are there?
-                breakpoint()
+                raise ExternalError(f"Unknown Discord activity type: {mact['type']}")
 
         return f"{status}{voice} {name}{activity}\n"
 
@@ -182,6 +91,7 @@ class CvCommand(Command):
         display_discrim = "d" in flags
         display_only_role = "a" not in flags
         display_only_online = "o" not in flags
+        display_not_connected = "h" not in flags
 
         # Find all categories
         categories = []
@@ -240,7 +150,7 @@ class CvCommand(Command):
 
                 message += "\n"
 
-        if len(not_connected_members) >= 0:
+        if display_not_connected and len(not_connected_members) >= 0:
             message += "[b][Non in chat vocale][/b]\n"
             for member in not_connected_members:
 
