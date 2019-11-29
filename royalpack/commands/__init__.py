@@ -7,7 +7,7 @@ from .rage import RageCommand
 from .reminder import ReminderCommand
 from .ship import ShipCommand
 from .smecds import SmecdsCommand
-# from .videochannel import VideochannelCommand
+from .videochannel import VideochannelCommand
 # from .trivia import TriviaCommand
 # from .matchmaking import MatchmakingCommand
 # from .pause import PauseCommand
@@ -35,7 +35,7 @@ available_commands = [
     ReminderCommand,
     ShipCommand,
     SmecdsCommand,
-    # VideochannelCommand,
+    VideochannelCommand,
     # TriviaCommand,
     # MatchmakingCommand,
     # PauseCommand,

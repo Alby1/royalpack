@@ -2,7 +2,6 @@ from starlette.requests import Request
 from starlette.responses import *
 from royalnet.constellation import *
 from royalnet.utils import *
-from royalnet.backpack.tables import *
 from ..tables import *
 
 
