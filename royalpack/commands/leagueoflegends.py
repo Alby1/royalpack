@@ -121,7 +121,7 @@ class LeagueoflegendsCommand(Command):
             log.info(f"Updating...")
             session = self.alchemy.Session()
             log.info("")
-            lols = session.query(self.alchemy.LeagueOfLegends).all()
+            lols = session.query(self.alchemy.get(LeagueOfLegends)).all()
             for lol in lols:
                 try:
                     await self._update(lol)
@@ -161,7 +161,7 @@ class LeagueoflegendsCommand(Command):
             summoner = self._riotwatcher.summoner.by_name(region=self.config["Lol"]["region"], summoner_name=name)
             # Ensure the account isn't already connected to something else
             leagueoflegends = await asyncify(
-                data.session.query(self.alchemy.LeagueOfLegends).filter_by(summoner_id=summoner["id"]).one_or_none)
+                data.session.query(self.alchemy.get(LeagueOfLegends)).filter_by(summoner_id=summoner["id"]).one_or_none)
             if leagueoflegends:
                 raise CommandError(f"L'account {leagueoflegends} è già registrato su Royalnet.")
             # Get rank information
@@ -186,7 +186,7 @@ class LeagueoflegendsCommand(Command):
             mastery = self._riotwatcher.champion_mastery.scores_by_summoner(region=self.config["Lol"]["region"],
                                                                             encrypted_summoner_id=summoner["id"])
             # Create database row
-            leagueoflegends = self.alchemy.LeagueOfLegends(
+            leagueoflegends = self.alchemy.get(LeagueOfLegends)(
                 region=self.config["Lol"]["region"],
                 user=author,
                 profile_icon_id=summoner["profileIconId"],

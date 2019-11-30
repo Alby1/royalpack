@@ -28,7 +28,7 @@ class PeertubeCommand(Command):
     async def _get_json(self):
         log.debug("Getting jsonfeed")
         async with aiohttp.ClientSession() as session:
-            async with session.get(self.interface.cfg["Peertube"]["feed_url"]) as response:
+            async with session.get(self.config["Peertube"]["feed_url"]) as response:
                 log.debug("Parsing jsonfeed")
                 j = await response.json()
                 log.debug("Jsonfeed parsed successfully")
@@ -37,7 +37,7 @@ class PeertubeCommand(Command):
     async def _send(self, message):
         client = self.interface.bot.client
         await self.interface.bot.safe_api_call(client.send_message,
-                                               chat_id=self.interface.cfg["Telegram"]["main_group_id"],
+                                               chat_id=self.config["Telegram"]["main_group_id"],
                                                text=escape(message),
                                                parse_mode="HTML",
                                                disable_webpage_preview=True)
@@ -67,7 +67,7 @@ class PeertubeCommand(Command):
                     await self._send(f"🆕 Nuovo video su RoyalTube!\n"
                                      f"[b]{video['title']}[/b]\n"
                                      f"{video['url']}")
-            await asyncio.sleep(self.interface.cfg["Peertube"]["feed_update_timeout"])
+            await asyncio.sleep(self.config["Peertube"]["feed_update_timeout"])
 
     async def run(self, args: CommandArgs, data: CommandData) -> None:
         if self.interface.name != "telegram":

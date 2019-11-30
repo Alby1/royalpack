@@ -15,7 +15,7 @@ from .videochannel import VideochannelCommand
 # from .playmode import PlaymodeCommand
 # from .queue import QueueCommand
 # from .skip import SkipCommand
-# from .summon import SummonCommand
+from .summon import SummonCommand
 # from .youtube import YoutubeCommand
 # from .soundcloud import SoundcloudCommand
 # from .zawarudo import ZawarudoCommand
@@ -43,7 +43,7 @@ available_commands = [
     # PlaymodeCommand,
     # QueueCommand,
     # SkipCommand,
-    # SummonCommand,
+    SummonCommand,
     # YoutubeCommand,
     # SoundcloudCommand,
     # ZawarudoCommand,
