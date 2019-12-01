@@ -9,7 +9,7 @@ class DiscordSummonEvent(Event):
     name = "discord_summon"
 
     async def run(self, *,
-                  channel_name: Optional[str] = None,
+                  channel_name: str = "",
                   channel_id: Optional[int] = None,
                   guild_id: Optional[int] = None,
                   user_id: Optional[int] = None,
@@ -27,11 +27,11 @@ class DiscordSummonEvent(Event):
         else:
             member = None
         # From channel id
-        if channel_id:
+        if channel_id is not None:
             client: discord.Client = self.serf.client
             channel = client.get_channel(channel_id)
         # Find channel
-        elif channel_name is not None:
+        elif channel_name != "":
             # Find accessible_to
             accessible_to = [self.serf.client.user]
             if member is not None:

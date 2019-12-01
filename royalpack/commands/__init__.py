@@ -11,7 +11,7 @@ from .videochannel import VideochannelCommand
 # from .trivia import TriviaCommand
 # from .matchmaking import MatchmakingCommand
 # from .pause import PauseCommand
-# from .play import PlayCommand
+from .play import PlayCommand
 # from .playmode import PlaymodeCommand
 # from .queue import QueueCommand
 # from .skip import SkipCommand
@@ -39,7 +39,7 @@ available_commands = [
     # TriviaCommand,
     # MatchmakingCommand,
     # PauseCommand,
-    # PlayCommand,
+    PlayCommand,
     # PlaymodeCommand,
     # QueueCommand,
     # SkipCommand,

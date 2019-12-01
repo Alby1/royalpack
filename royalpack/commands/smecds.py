@@ -1,7 +1,6 @@
 import typing
 import random
 from royalnet.commands import *
-from royalnet.utils import safeformat
 
 
 class SmecdsCommand(Command):
@@ -62,8 +61,6 @@ class SmecdsCommand(Command):
                 "dello Slime God", "del salassato", "della salsa", "di Senjougahara", "di Sugar", "della Stampa",
                 "della Stampante"]
 
-    _SMECDS = "🤔 Secondo me, è colpa {ds}."
-
     async def run(self, args: CommandArgs, data: CommandData) -> None:
         ds = random.sample(self._DS_LIST, 1)[0]
-        await data.reply(safeformat(self._SMECDS, ds=ds))
+        await data.reply(f"🤔 Secondo me, è colpa {ds}.")

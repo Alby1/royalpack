@@ -270,6 +270,17 @@ six = ">=1.5"
 
 [[package]]
 category = "main"
+description = "A streaming multipart parser for Python"
+name = "python-multipart"
+optional = false
+python-versions = "*"
+version = "0.0.5"
+
+[package.dependencies]
+six = ">=1.4.0"
+
+[[package]]
+category = "main"
 description = "We have made you a wrapper you can't refuse"
 name = "python-telegram-bot"
 optional = false
@@ -366,6 +377,10 @@ version = "^2.8.4"
 optional = true
 version = "^1.3.0"
 
+[package.dependencies.python-multipart]
+optional = true
+version = "^0.0.5"
+
 [package.dependencies.python_telegram_bot]
 optional = true
 version = "^12.2.0"
@@ -399,14 +414,14 @@ alchemy_easy = ["sqlalchemy (^1.3.10)", "psycopg2_binary (^2.8.4)"]
 alchemy_hard = ["sqlalchemy (^1.3.10)", "psycopg2 (^2.8.4)"]
 bard = ["ffmpeg_python (~0.2.0)", "youtube-dl"]
 coloredlogs = ["coloredlogs (^10.0)"]
-constellation = ["starlette (^0.12.13)", "uvicorn (^0.10.7)"]
+constellation = ["starlette (^0.12.13)", "uvicorn (^0.10.7)", "python-multipart (^0.0.5)"]
 discord = ["discord.py", "pynacl (^1.3.0)"]
 herald = ["websockets (^8.1)"]
 sentry = ["sentry_sdk (~0.13.2)"]
 telegram = ["python_telegram_bot (^12.2.0)"]
 
 [package.source]
-reference = "f1803f2ffd5507827be1a430d2b09996decfc098"
+reference = "8ff0731aa5bd167a59f342472bfe2d7e74daf1ca"
 type = "git"
         url = "https://github.com/Steffo99/royalnet/"
 
@@ -786,6 +801,9 @@ pyreadline = [
 python-dateutil = [
     {file = "python-dateutil-2.8.1.tar.gz", hash = "sha256:73ebfe9dbf22e832286dafa60473e4cd239f8592f699aa5adaf10050e6e1823c"},
     {file = "python_dateutil-2.8.1-py2.py3-none-any.whl", hash = "sha256:75bb3f31ea686f1197762692a9ee6a7550b59fc6ca3a1f4b5d7e32fb98e2da2a"},
+]
+python-multipart = [
+    {file = "python-multipart-0.0.5.tar.gz", hash = "sha256:f7bb5f611fc600d15fa47b3974c8aa16e93724513b49b5f95c81e6624c83fa43"},
 ]
 python-telegram-bot = [
     {file = "python-telegram-bot-12.2.0.tar.gz", hash = "sha256:346d42771c2b23384c59f5f41e05bd7e801a0ce118d8dcb95209bb73d5f694c5"},

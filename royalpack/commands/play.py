@@ -1,11 +1,9 @@
-import typing
 import pickle
-import datetime
+import base64
 import discord
+from typing import *
 from royalnet.commands import *
-from royalnet.utils import asyncify
-from royalnet.audio import YtdlDiscord
-from royalnet.bots import DiscordBot
+from royalnet.utils import *
 
 
 class PlayCommand(Command):
@@ -15,65 +13,41 @@ class PlayCommand(Command):
 
     description: str = "Aggiunge un url alla coda della chat vocale."
 
-    syntax = "[ [guild] ] {url}"
-
-    @staticmethod
-    async def _legacy_play_handler(bot: "DiscordBot", guild_name: typing.Optional[str], url: str):
-        """Handle a play Royalnet request. That is, add audio to a PlayMode."""
-        # Find the matching guild
-        if guild_name:
-            guilds: typing.List[discord.Guild] = bot.client.find_guild_by_name(guild_name)
-        else:
-            guilds = bot.client.guilds
-        if len(guilds) == 0:
-            raise CommandError("Server non trovato.")
-        if len(guilds) > 1:
-            raise CommandError("Il nome del server è ambiguo.")
-        guild = list(bot.client.guilds)[0]
-        # Ensure the guild has a PlayMode before adding the file to it
-        if not bot.music_data.get(guild):
-            raise CommandError("Il bot non è in nessun canale vocale.")
-        # Create url
-        ytdl_args = {
-            "format": "bestaudio/best",
-            "outtmpl": f"./downloads/{datetime.datetime.now().timestamp()}_%(title)s.%(ext)s"
-        }
-        # Start downloading
-        dfiles: typing.List[YtdlDiscord] = await asyncify(YtdlDiscord.create_from_url, url, **ytdl_args)
-        await bot.add_to_music_data(dfiles, guild)
-        # Create response dictionary
-        response = {
-            "videos": [{
-                "title": dfile.info.title,
-                "discord_embed_pickle": str(pickle.dumps(dfile.info.to_discord_embed()))
-            } for dfile in dfiles]
-        }
-        return response
-
-    _event_name = "_legacy_play"
-
-    def __init__(self, interface: CommandInterface):
-        super().__init__(interface)
-        if interface.name == "discord":
-            interface.register_herald_action(self._event_name, self._legacy_play_handler)
+    syntax = "{url}"
 
     async def run(self, args: CommandArgs, data: CommandData) -> None:
-        guild_name, url = args.match(r"(?:\[(.+)])?\s*<?(.+)>?")
-        if not (url.startswith("http://") or url.startswith("https://")):
-            raise CommandError(f"Il comando [c]{self.interface.prefix}play[/c] funziona solo per riprodurre file da"
-                               f" un URL.\n"
-                               f"Se vuoi cercare un video, usa [c]{self.interface.prefix}youtube[/c] o"
-                               f" [c]{self.interface.prefix}soundcloud[/c]!")
-        response: dict = await self.interface.call_herald_action("discord", self._event_name, {
-                                                                     "guild_name": guild_name,
-                                                                     "url": url
-                                                                 })
-        if len(response["videos"]) == 0:
-            raise CommandError(f"Nessun file trovato.")
-        for video in response["videos"]:
+        url = args.joined()
+        # if not (url.startswith("http://") or url.startswith("https://")):
+        #     raise CommandError(f"Il comando [c]{self.interface.prefix}play[/c] funziona solo per riprodurre file da"
+        #                        f" un URL.\n"
+        #                        f"Se vuoi cercare un video, come misura temporanea puoi usare "
+        #                        f"[c]ytsearch:nomevideo[/c] o [c]scsearch:nomevideo[/c] come url.")
+        if self.interface.name == "discord":
+            message: discord.Message = data.message
+            guild: discord.Guild = message.guild
+            guild_id: Optional[int] = guild.id
+        else:
+            guild_id = None
+        response: Dict[str, Any] = await self.interface.call_herald_event("discord", "discord_play",
+                                                                          url=url, guild_id=guild_id)
+
+        too_long: List[Dict[str, Any]] = response["too_long"]
+        if len(too_long) > 0:
+            await data.reply(f"⚠ {len(too_long)} file non {'è' if len(too_long) == 1 else 'sono'}"
+                             f" stat{'o' if len(too_long) == 1 else 'i'} scaricat{'o' if len(too_long) == 1 else 'i'}"
+                             f" perchè durava{'' if len(too_long) == 1 else 'no'}"
+                             f" più di [c]{self.config['Play']['max_song_duration']}[/c] secondi.")
+
+        added: List[Dict[str, Any]] = response["added"]
+        if len(added) > 0:
+            reply = f"▶️ Aggiunt{'o' if len(added) == 1 else 'i'} {len(added)} file alla coda:\n"
             if self.interface.name == "discord":
-                # This is one of the unsafest things ever
-                embed = pickle.loads(eval(video["discord_embed_pickle"]))
-                await data.message.channel.send(content="▶️ Aggiunto alla coda:", embed=embed)
+                await data.reply(reply)
+                for item in added:
+                    embed = pickle.loads(base64.b64decode(bytes(item["stringified_base64_pickled_discord_embed"],
+                                                                encoding="ascii")))
+                    # noinspection PyUnboundLocalVariable
+                    await message.channel.send(embed=embed)
             else:
-                await data.reply(f"▶️ Aggiunto alla coda: [i]{video['title']}[/i]")
+                reply += numberemojiformat([a["title"] for a in added])
+                await data.reply(reply)
