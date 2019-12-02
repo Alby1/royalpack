@@ -16,14 +16,16 @@ from .play import PlayCommand
 # from .queue import QueueCommand
 from .skip import SkipCommand
 from .summon import SummonCommand
-# from .youtube import YoutubeCommand
-# from .soundcloud import SoundcloudCommand
+from .youtube import YoutubeCommand
+from .soundcloud import SoundcloudCommand
 # from .zawarudo import ZawarudoCommand
 from .emojify import EmojifyCommand
 from .leagueoflegends import LeagueoflegendsCommand
 from .diarioquote import DiarioquoteCommand
 # from .mp3 import Mp3Command
 from .peertube import PeertubeCommand
+from .googlevideo import GooglevideoCommand
+from .yahoovideo import YahoovideoCommand
 
 # Enter the commands of your Pack here!
 available_commands = [
@@ -44,14 +46,16 @@ available_commands = [
     # QueueCommand,
     SkipCommand,
     SummonCommand,
-    # YoutubeCommand,
-    # SoundcloudCommand,
+    YoutubeCommand,
+    SoundcloudCommand,
     # ZawarudoCommand,
     EmojifyCommand,
     LeagueoflegendsCommand,
     DiarioquoteCommand,
     # Mp3Command,
     PeertubeCommand,
+    GooglevideoCommand,
+    YahoovideoCommand,
 ]
 
 # Don't change this, it should automatically generate __all__

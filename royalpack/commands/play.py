@@ -15,6 +15,8 @@ class PlayCommand(Command):
 
     syntax = "{url}"
 
+    _URL_FORMAT = "{url}"
+
     async def run(self, args: CommandArgs, data: CommandData) -> None:
         url = args.joined()
         # if not (url.startswith("http://") or url.startswith("https://")):
@@ -29,7 +31,8 @@ class PlayCommand(Command):
         else:
             guild_id = None
         response: Dict[str, Any] = await self.interface.call_herald_event("discord", "discord_play",
-                                                                          url=url, guild_id=guild_id)
+                                                                          url=self._URL_FORMAT.format(url=url),
+                                                                          guild_id=guild_id)
 
         too_long: List[Dict[str, Any]] = response["too_long"]
         if len(too_long) > 0:
@@ -51,3 +54,6 @@ class PlayCommand(Command):
             else:
                 reply += numberemojiformat([a["title"] for a in added])
                 await data.reply(reply)
+
+        if len(added) + len(too_long) == 0:
+            raise ExternalError("Nessun video trovato.")
