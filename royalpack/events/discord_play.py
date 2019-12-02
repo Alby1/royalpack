@@ -36,7 +36,7 @@ class DiscordPlayEvent(Event):
         added: List[YtdlDiscord] = []
         too_long: List[YtdlDiscord] = []
         if isinstance(voice_player.playing, PlayableYTDQueue):
-            for ytd in ytds:
+            for index, ytd in enumerate(ytds):
                 if ytd.info.duration >= datetime.timedelta(seconds=self.config["Play"]["max_song_duration"]):
                     too_long.append(ytd)
                     continue
