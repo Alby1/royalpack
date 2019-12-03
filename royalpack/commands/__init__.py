@@ -26,6 +26,7 @@ from .diarioquote import DiarioquoteCommand
 from .peertube import PeertubeCommand
 from .googlevideo import GooglevideoCommand
 from .yahoovideo import YahoovideoCommand
+from .userinfo import UserinfoCommand
 
 # Enter the commands of your Pack here!
 available_commands = [
@@ -56,6 +57,7 @@ available_commands = [
     PeertubeCommand,
     GooglevideoCommand,
     YahoovideoCommand,
+    UserinfoCommand,
 ]
 
 # Don't change this, it should automatically generate __all__
