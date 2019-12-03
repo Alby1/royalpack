@@ -2,6 +2,7 @@ from typing import *
 from royalnet.commands import *
 from royalnet.serf.discord import *
 from royalnet.serf.discord.errors import *
+from ..utils import RoyalQueue
 import discord
 
 
@@ -55,7 +56,7 @@ class DiscordSummonEvent(Event):
             raise InvalidInputError("Non ho trovato nessun canale in cui connettermi.")
         # Create a new VoicePlayer
         vp = VoicePlayer(loop=self.loop)
-        vp.playing = await PlayableYTDQueue.create()
+        vp.playing = await RoyalQueue.create()
         # Connect to the channel
         try:
             await vp.connect(channel)

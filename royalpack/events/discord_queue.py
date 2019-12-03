@@ -4,6 +4,7 @@ import base64
 from typing import *
 from royalnet.commands import *
 from royalnet.serf.discord import *
+from ..utils import RoyalQueue
 
 
 class DiscordQueueEvent(Event):
@@ -29,7 +30,7 @@ class DiscordQueueEvent(Event):
             if voice_player is None:
                 raise UserError("Il bot non è in nessun canale vocale.\n"
                                 "Evocalo prima con [c]summon[/c]!")
-        if isinstance(voice_player.playing, PlayableYTDQueue):
+        if isinstance(voice_player.playing, RoyalQueue):
             now_playing = voice_player.playing.now_playing
             return {
                 "type": f"{voice_player.playing.__class__.__qualname__}",

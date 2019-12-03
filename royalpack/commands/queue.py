@@ -24,7 +24,7 @@ class QueueCommand(Command):
                                                                           guild_id=guild_id)
 
         queue_type = response["type"]
-        if queue_type == "PlayableYTDQueue":
+        if queue_type == "RoyalQueue":
             next_up = response["next_up"]
             now_playing = response["now_playing"]
             await data.reply(f"ℹ️ La coda contiene {len(next_up)} file.\n\n")

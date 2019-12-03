@@ -6,6 +6,7 @@ from typing import *
 from royalnet.commands import *
 from royalnet.serf.discord import *
 from royalnet.bard import *
+from ..utils import RoyalQueue
 
 
 class DiscordPlayEvent(Event):
@@ -35,7 +36,7 @@ class DiscordPlayEvent(Event):
         ytds = await YtdlDiscord.from_url(url)
         added: List[YtdlDiscord] = []
         too_long: List[YtdlDiscord] = []
-        if isinstance(voice_player.playing, PlayableYTDQueue):
+        if isinstance(voice_player.playing, RoyalQueue):
             for index, ytd in enumerate(ytds):
                 if ytd.info.duration >= datetime.timedelta(seconds=self.config["Play"]["max_song_duration"]):
                     too_long.append(ytd)

@@ -1,4 +1,3 @@
-import typing
 import discord
 from royalnet.commands import *
 
