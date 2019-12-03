@@ -1,0 +1,36 @@
+import discord
+from typing import *
+from royalnet.commands import *
+from royalnet.serf.discord import *
+
+
+class DiscordPauseEvent(Event):
+    name = "discord_pause"
+
+    async def run(self,
+                  guild_id: Optional[int] = None,
+                  **kwargs) -> dict:
+        if not isinstance(self.serf, DiscordSerf):
+            raise UnsupportedError()
+        client: discord.Client = self.serf.client
+        if len(self.serf.voice_players) == 1:
+            voice_player: VoicePlayer = self.serf.voice_players[0]
+        else:
+            if guild_id is None:
+                # TODO: trovare un modo per riprodurre canzoni su più server da Telegram
+                raise InvalidInputError("Non so in che Server riprodurre questo file...\n"
+                                        "Invia il comando su Discord, per favore!")
+            guild: discord.Guild = client.get_guild(guild_id)
+            if guild is None:
+                raise InvalidInputError("Impossibile trovare il Server specificato.")
+            voice_player: VoicePlayer = self.serf.find_voice_player(guild)
+            if voice_player is None:
+                raise UserError("Il bot non è in nessun canale vocale.\n"
+                                "Evocalo prima con [c]summon[/c]!")
+
+        if voice_player.voice_client.is_paused():
+            voice_player.voice_client.resume()
+            return {"action": "resumed"}
+        else:
+            voice_player.voice_client.pause()
+            return {"action": "paused"}

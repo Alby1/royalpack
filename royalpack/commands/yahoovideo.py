@@ -11,3 +11,5 @@ class YahoovideoCommand(PlayCommand):
     syntax = "{ricerca}"
 
     _URL_FORMAT = "yvsearch:{url}"
+
+    # Too bad yvsearch: always finds nothing.

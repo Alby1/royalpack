@@ -1,9 +1,9 @@
-import typing
 import pickle
+import base64
 import discord
+from typing import *
 from royalnet.commands import *
-from royalnet.utils import numberemojiformat
-from royalnet.bots import DiscordBot
+from royalnet.utils import *
 
 
 class QueueCommand(Command):
@@ -11,83 +11,52 @@ class QueueCommand(Command):
 
     aliases = ["q"]
 
-    description: str = "Visualizza la coda di riproduzione attuale."
-
-    syntax = "[ [guild] ]"
-
-    @staticmethod
-    async def _legacy_queue_handler(bot: "DiscordBot", guild_name: typing.Optional[str]):
-        # Find the matching guild
-        if guild_name:
-            guilds: typing.List[discord.Guild] = bot.client.find_guild_by_name(guild_name)
-        else:
-            guilds = bot.client.guilds
-        if len(guilds) == 0:
-            raise CommandError("No guilds with the specified name found.")
-        if len(guilds) > 1:
-            raise CommandError("Multiple guilds with the specified name found.")
-        guild = list(bot.client.guilds)[0]
-        # Check if the guild has a PlayMode
-        playmode = bot.music_data.get(guild)
-        if not playmode:
-            return {
-                "type": None
-            }
-        try:
-            queue = playmode.queue_preview()
-        except NotImplementedError:
-            return {
-                "type": playmode.__class__.__name__
-            }
-        return {
-            "type": playmode.__class__.__name__,
-            "queue":
-                {
-                    "strings": [str(dfile.info) for dfile in queue],
-                    "pickled_embeds": str(pickle.dumps([dfile.info.to_discord_embed() for dfile in queue]))
-                }
-        }
-
-    _event_name = "_legacy_queue"
-
-    def __init__(self, interface: CommandInterface):
-        super().__init__(interface)
-        if interface.name == "discord":
-            interface.register_herald_action(self._event_name, self._legacy_queue_handler)
+    description: str = "Visualizza la coda di riproduzione attuale.."
 
     async def run(self, args: CommandArgs, data: CommandData) -> None:
-        guild_name, = args.match(r"(?:\[(.+)])?")
-        response = await self.interface.call_herald_action("discord", self._event_name, {"guild_name": guild_name})
-        if response["type"] is None:
-            await data.reply("ℹ️ Non c'è nessuna coda di riproduzione attiva al momento.")
-            return
-        elif "queue" not in response:
-            await data.reply(f"ℹ️ La coda di riproduzione attuale ([c]{response['type']}[/c]) non permette l'anteprima.")
-            return
-        if response["type"] == "Playlist":
-            if len(response["queue"]["strings"]) == 0:
-                message = f"ℹ️ Questa [c]Playlist[/c] è vuota."
-            else:
-                message = f"ℹ️ Questa [c]Playlist[/c] contiene {len(response['queue']['strings'])} elementi, e i prossimi saranno:\n"
-        elif response["type"] == "Pool":
-            if len(response["queue"]["strings"]) == 0:
-                message = f"ℹ️ Questo [c]Pool[/c] è vuoto."
-            else:
-                message = f"ℹ️ Questo [c]Pool[/c] contiene {len(response['queue']['strings'])} elementi, tra cui:\n"
-        elif response["type"] == "Layers":
-            if len(response["queue"]["strings"]) == 0:
-                message = f"ℹ️ Nessun elemento è attualmente in riproduzione, pertanto non ci sono [c]Layers[/c]:"
-            else:
-                message = f"ℹ️ I [c]Layers[/c] dell'elemento attualmente in riproduzione sono {len(response['queue']['strings'])}, tra cui:\n"
-        else:
-            if len(response["queue"]["strings"]) == 0:
-                message = f"ℹ️ Il PlayMode attuale, [c]{response['type']}[/c], è vuoto.\n"
-            else:
-                message = f"ℹ️ Il PlayMode attuale, [c]{response['type']}[/c], contiene {len(response['queue']['strings'])} elementi:\n"
         if self.interface.name == "discord":
-            await data.reply(message)
-            for embed in pickle.loads(eval(response["queue"]["pickled_embeds"]))[:5]:
-                await data.message.channel.send(embed=embed)
+            message: discord.Message = data.message
+            guild: discord.Guild = message.guild
+            guild_id: Optional[int] = guild.id
         else:
-            message += numberemojiformat(response["queue"]["strings"][:10])
-            await data.reply(message)
+            guild_id = None
+        response: Dict[str, Any] = await self.interface.call_herald_event("discord", "discord_queue",
+                                                                          guild_id=guild_id)
+
+        queue_type = response["type"]
+        if queue_type == "PlayableYTDQueue":
+            next_up = response["next_up"]
+            now_playing = response["now_playing"]
+            await data.reply(f"ℹ️ La coda contiene {len(next_up)} file.\n\n")
+
+            if now_playing is not None:
+                reply = f"Attualmente, sta venendo riprodotto:\n"
+                if self.interface.name == "discord":
+                    await data.reply(reply)
+                    embed = pickle.loads(base64.b64decode(bytes(now_playing["stringified_base64_pickled_discord_embed"],
+                                                                encoding="ascii")))
+                    # noinspection PyUnboundLocalVariable
+                    await message.channel.send(embed=embed)
+                else:
+                    reply += f"▶️ {now_playing['title']}\n\n"
+                    await data.reply(reply)
+            else:
+                await data.reply("⏹ Attualmente, non sta venendo riprodotto nulla.")
+
+            reply = ""
+            if len(next_up) >= 1:
+                reply += "I prossimi file in coda sono:\n"
+                if self.interface.name == "discord":
+                    await data.reply(reply)
+                    for item in next_up[:5]:
+                        embed = pickle.loads(base64.b64decode(bytes(item["stringified_base64_pickled_discord_embed"],
+                                                                    encoding="ascii")))
+                        # noinspection PyUnboundLocalVariable
+                        await message.channel.send(embed=embed)
+                else:
+                    reply += numberemojiformat([a["title"] for a in next_up[:5]])
+                    await data.reply(reply)
+            else:
+                await data.reply("ℹ️ Non ci sono altri file in coda.")
+        else:
+            raise CommandError(f"Non so come visualizzare il contenuto di un [c]{queue_type}[/c].")

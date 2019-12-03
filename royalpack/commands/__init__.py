@@ -10,10 +10,10 @@ from .smecds import SmecdsCommand
 from .videochannel import VideochannelCommand
 # from .trivia import TriviaCommand
 # from .matchmaking import MatchmakingCommand
-# from .pause import PauseCommand
+from .pause import PauseCommand
 from .play import PlayCommand
 # from .playmode import PlaymodeCommand
-# from .queue import QueueCommand
+from .queue import QueueCommand
 from .skip import SkipCommand
 from .summon import SummonCommand
 from .youtube import YoutubeCommand
@@ -40,10 +40,10 @@ available_commands = [
     VideochannelCommand,
     # TriviaCommand,
     # MatchmakingCommand,
-    # PauseCommand,
+    PauseCommand,
     PlayCommand,
     # PlaymodeCommand,
-    # QueueCommand,
+    QueueCommand,
     SkipCommand,
     SummonCommand,
     YoutubeCommand,

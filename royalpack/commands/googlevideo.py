@@ -11,3 +11,5 @@ class GooglevideoCommand(PlayCommand):
     syntax = "{ricerca}"
 
     _URL_FORMAT = "gvsearch:{url}"
+
+    # Too bad gvsearch: always finds nothing.
