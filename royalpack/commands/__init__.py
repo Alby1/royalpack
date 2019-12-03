@@ -26,6 +26,10 @@ from .diarioquote import DiarioquoteCommand
 from .peertube import PeertubeCommand
 from .googlevideo import GooglevideoCommand
 from .yahoovideo import YahoovideoCommand
+from .userinfo import UserinfoCommand
+from .spell import SpellCommand
+from .ahnonlosoio import AhnonlosoioCommand
+from .eat import EatCommand
 
 # Enter the commands of your Pack here!
 available_commands = [
@@ -56,6 +60,10 @@ available_commands = [
     PeertubeCommand,
     GooglevideoCommand,
     YahoovideoCommand,
+    UserinfoCommand,
+    SpellCommand,
+    AhnonlosoioCommand,
+    EatCommand,
 ]
 
 # Don't change this, it should automatically generate __all__
