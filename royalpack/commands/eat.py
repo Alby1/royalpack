@@ -1,4 +1,3 @@
-import royalnet
 from royalnet.commands import *
 
 
