@@ -6,6 +6,8 @@ from .tables import available_tables
 from .stars import available_page_stars, available_exception_stars
 from .events import available_events
 
+from .version import semantic as __version__
+
 __all__ = [
     "commands",
     "tables",
