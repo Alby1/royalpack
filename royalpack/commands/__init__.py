@@ -30,6 +30,7 @@ from .userinfo import UserinfoCommand
 from .spell import SpellCommand
 from .ahnonlosoio import AhnonlosoioCommand
 from .eat import EatCommand
+from .pmots import PmotsCommand
 
 # Enter the commands of your Pack here!
 available_commands = [
@@ -64,6 +65,7 @@ available_commands = [
     SpellCommand,
     AhnonlosoioCommand,
     EatCommand,
+    PmotsCommand,
 ]
 
 # Don't change this, it should automatically generate __all__
