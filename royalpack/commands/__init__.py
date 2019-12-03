@@ -27,6 +27,7 @@ from .peertube import PeertubeCommand
 from .googlevideo import GooglevideoCommand
 from .yahoovideo import YahoovideoCommand
 from .userinfo import UserinfoCommand
+from .spell import SpellCommand
 
 # Enter the commands of your Pack here!
 available_commands = [
@@ -58,6 +59,7 @@ available_commands = [
     GooglevideoCommand,
     YahoovideoCommand,
     UserinfoCommand,
+    SpellCommand,
 ]
 
 # Don't change this, it should automatically generate __all__

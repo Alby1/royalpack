@@ -427,6 +427,14 @@ type = "git"
 
 [[package]]
 category = "main"
+description = "A package to procedurally generate useless spells!"
+name = "royalspells"
+optional = false
+python-versions = "~=3.6"
+version = "3.2"
+
+[[package]]
+category = "main"
 description = "Python client for Sentry (https://getsentry.com)"
 name = "sentry-sdk"
 optional = false
@@ -583,7 +591,7 @@ python-versions = "*"
 version = "2019.11.28"
 
 [metadata]
-content-hash = "869279b7212d24287566f5b073831fa19f68f9e099177d96b78af0897e99489b"
+content-hash = "be7ee7b683f3e789a759f25a03730bf98152e6c5f47219d9ee5030f8f66d9d6f"
     python-versions = "^3.8"
 
 [metadata.files]
@@ -837,6 +845,9 @@ riotwatcher = [
     {file = "riotwatcher-2.7.1.tar.gz", hash = "sha256:5349271c7e00637b7619491a6070e66603705db60558ea2a690e7016f6e6d9a4"},
 ]
 royalnet = []
+royalspells = [
+    {file = "royalspells-3.2.tar.gz", hash = "sha256:2bd4a9a66514532e35c02c3907425af48c7cb292364c4843c795719a82b25dfe"},
+]
 sentry-sdk = [
     {file = "sentry-sdk-0.13.4.tar.gz", hash = "sha256:bfc486af718c268cf49ff43d6334ed4db7333ace420240b630acdd8f8a3a8f60"},
     {file = "sentry_sdk-0.13.4-py2.py3-none-any.whl", hash = "sha256:a7c2c8d3f53b6b57454830cd6a4b73d272f1ba91952f59e6545b3cf885f3c22f"},
