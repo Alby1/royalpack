@@ -48,6 +48,6 @@ class EatCommand(Command):
     }
 
     async def run(self, args: CommandArgs, data: CommandData) -> None:
-        food = args.joined(require_at_least=0)
+        food = args.joined(require_at_least=1)
         food_string = self._FOODS.get(food.lower(), self._FOODS["_default"])
         await data.reply(food_string.format(food=food.capitalize()))
