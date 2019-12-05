@@ -53,7 +53,7 @@ class EatCommand(Command):
                  " caffè.[/i]",
         "redbull": "🍾 Hai mangiato {food}.\n[i]Adesso puoi volare![/i]",
         "red bull": "🍾 Hai mangiato {food}.\n[i]Adesso puoi volare![/i]",
-        "birra": "🍺 Hai mangiato {food}.\n[i]Adesso sei un povero barbone alcolizzato[/i]",
+        "birra": "🍺 Hai mangiato {food}.\n[i]Adesso sei un povero barbone alcolizzato.[/i]",
         "cacca": "💩 Che schifo! Hai mangiato {food}!\n[i]Allontati per favore, PLEH![/i]",
     }
 
