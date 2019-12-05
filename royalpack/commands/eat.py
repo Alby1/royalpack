@@ -78,11 +78,21 @@ class EatCommand(Command):
         "3 porcellini": "🐷 Hai mangiato i {food}. \n[i]La casa di mattoni non è bastata a fermarti![/i]",
         "gatto": "🐱 Vieni fermato prima di poter compiere questo gesto orribile.\n"
                  "[i]Il {food} verrà pettato da tutti per farlo riavere dal trauma.[/i]",
-        "riso": "🍚 Hai mangiato del {food}. Non ci resta che il Pianto! \n[i] Da bum tsss![/i]",
+        "riso": "🍚 Hai mangiato del {food}. Non ci resta che il Pianto! \n[i]Ba dum tsss![/i]",
         "royal bot": "🤖 Come osi provare a mangiarmi?! \n[i]Il {food} è arrabbiato con te.[/i]",
         "bot": "🤖 Come osi provare a mangiarmi?! \n[i]Il {food} è arrabbiato con te.[/i]",
         "mela": "🍎 Hai mangiato una Mela, e hai fatto bene perché una mela al giorno toglie il medico di torno!\n"
                 "[i]Adesso sei molto più sano[/i]",
+        "tutto": "👵🏻 Hai mangiato {food}. Si vede che hai gradito il pasto!\n[i]Tua nonna ti serve un'altra"
+                 " porzione.[/i]",
+        "caffè": "☕️ Oh, no! Questo era il {food} della Peppina!\n[i]Ha provato col tritolo, salti in aria col"
+                 " caffè.[/i]",
+        "caffé": "☕️ Oh, no! Questo era il {food} della Peppina!\n[i]Ha provato col tritolo, salti in aria col"
+                 " caffè.[/i]",
+        "redbull": "🍾 Hai mangiato {food}.\n[i]Adesso puoi volare![/i]",
+        "red bull": "🍾 Hai mangiato {food}.\n[i]Adesso puoi volare![/i]",
+        "birra": "🍺 Hai mangiato {food}.\n[i]Adesso sei un povero barbone alcolizzato.[/i]",
+        "cacca": "💩 Che schifo! Hai mangiato {food}!\n[i]Allontati per favore, PLEH![/i]",
     }
 
     async def run(self, args: CommandArgs, data: CommandData) -> None:
