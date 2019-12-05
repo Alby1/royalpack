@@ -10,6 +10,35 @@ class EatCommand(Command):
 
     _FOODS = {
         "_default": "🍗 Hai mangiato {food}!\n[i]Ma non è successo nulla.[/i]",
+        
+        #sezione nonna
+        "tutto": "👵🏻 Hai mangiato {food}. Si vede che hai gradito il pasto!\n[i]Tua nonna ti serve un'altra"
+                 " porzione.[/i]",
+        "poco": "👵🏻 Hai mangiato davvero {food}! \n[i]Tua nonna è molto arrabbiata e ferita nell'orgoglio."
+                " Vergognati![/i]",
+        "nonna": "👵🏻 Hai mangiato tua {food}. In qualche modo, continua a cucinarti cibo anche da dentro la"
+                 " pancia.\n[i]This can't end well...[/i]",
+        
+        #sezione caffé (ce n'erano troppi, con gli accenti e il resto)
+        "caffè": "☕️ Oh, no! Questo era il {food} della Peppina!\n[i]Ha provato col tritolo, salti in aria col"
+                 " {food}.[/i]",
+        "caffé": "☕️ Oh, no! Questo era il {food} della Peppina!\n[i]Ha provato col tritolo, salti in aria col"
+                 " {food}.[/i]",
+        "caffe": "☕️ Oh, no! Questo era il {food} della Peppina!\n[i]Ha provato col tritolo, salti in aria col"
+                 " {food}.[/i]",
+        "kaffee": "☕️ Ma BUONGIORNISSIMOOO !!!!\n[i]Non si può iniziare la giornata senza un buon {food} !![/i]",
+        "kaffè": "☕️ Ma BUONGIORNISSIMOOO !!!!\n[i]Non si può iniziare la giornata senza un buon {food} !![/i]",
+        "kaffé": "☕️ Ma BUONGIORNISSIMOOO !!!!\n[i]Non si può iniziare la giornata senza un buon {food} !![/i]",
+        "kaffe": "☕️ Ma BUONGIORNISSIMOOO !!!!\n[i]Non si può iniziare la giornata senza un buon {food} !![/i]",
+        
+        #sezione in cui mangi gli utenti
+        "balu": "🚹 Hai mangiato {food}. \n[i]Sa di snado.[/i]",
+        "balubis": "🚹 Hai mangiato {food}. \n[i]Sa di acqua calda.[/i]",
+        "chiara": "🚺 Hai mangiato {food}. \n[i]Sa un po' di biscotto, ma per lo più sa di curcuma, pepe e spezie varie.[/i]",
+        "marco": "🚹 Hai mangiato {food}. \n[i]Sa di carlino <.<[/i]",
+        "steffo": "🚹 Hai mangiato {food}. \n[i]Sa di gelato e di Coca Cola.[/i]",
+        
+        #altro
         "tonnuooooooro": "👻 Il {food} che hai mangiato era posseduto.\n[i]Spooky![/i]",
         "uranio": "☢️ L'{food} che hai mangiato era radioattivo.\n[i]Stai brillando di verde![/i]",
         "pollo": '🍗 Il {food} che hai appena mangiato proveniva dallo spazio.\n[i]Coccodè?[/i]',
@@ -33,7 +62,7 @@ class EatCommand(Command):
         "mango incantato": "🥭 Hai mangiato un {food}.\n[i]Ti sembra di avere più mana, adesso.[/i]",
         "enchanted mango": "🥭 Hai mangiato un {food}.\n[i]Ti sembra di avere più mana, adesso.[/i]",
         "musica": "🎶 Hai mangiato un po' di {food} mentre ascoltavi un buon pranzo.\n[i]Tutto ciò ha perfettamente"
-                  " senso.[\i]",
+                  " senso.[/i]",
         "fungo": "🍄 Hai mangiato un {food}.\n[i]Presto riuscirai a salvare Peach![/i]",
         "zucca": "🎃 Hai mangiato una {food}. Solo che era una lanterna di Halloween.\n[i]Inizi a fare luce al"
                  " buio.[/i]",
@@ -45,12 +74,15 @@ class EatCommand(Command):
         "demone": "👿 Hai mangiato un {food}. Non l'ha presa bene...\n[i]Hai terribili bruciori di stomaco.[/i]",
         "niente": "⬜️ Non hai mangiato {food}.\n[i]Hai ancora più fame.[/i]",
         "nulla": "⬜️ Non hai mangiato {food}.\n[i]Hai ancora più fame.[/i]",
-        "tutto": "👵🏻 Hai mangiato {food}. Si vede che hai gradito il pasto!\n[i]Tua nonna ti serve un'altra"
-                 " porzione.[/i]",
-        "caffè": "☕️ Oh, no! Questo era il {food} della Peppina!\n[i]Ha provato col tritolo, salti in aria col"
-                 " caffè.[/i]",
-        "caffé": "☕️ Oh, no! Questo era il {food} della Peppina!\n[i]Ha provato col tritolo, salti in aria col"
-                 " caffè.[/i]",
+        "tre porcellini": "🐷 Hai mangiato i {food}. \n[i]La casa di mattoni non è bastata a fermarti![/i]",
+        "3 porcellini": "🐷 Hai mangiato i {food}. \n[i]La casa di mattoni non è bastata a fermarti![/i]",
+        "gatto": "🐱 Vieni fermato prima di poter compiere questo gesto orribile.\n"
+                 "[i]Il {food} verrà pettato da tutti per farlo riavere dal trauma.[/i]",
+        "riso": "🍚 Hai mangiato del {food}. Non ci resta che il Pianto! \n[i] Da bum tsss![/i]",
+        "royal bot": "🤖 Come osi provare a mangiarmi?! \n[i]Il {food} è arrabbiato con te.[/i]",
+        "bot": "🤖 Come osi provare a mangiarmi?! \n[i]Il {food} è arrabbiato con te.[/i]",
+        "mela": "🍎 Hai mangiato una Mela, e hai fatto bene perché una mela al giorno toglie il medico di torno!\n"
+                "[i]Adesso sei molto più sano[/i]",
     }
 
     async def run(self, args: CommandArgs, data: CommandData) -> None:
