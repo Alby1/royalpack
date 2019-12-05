@@ -11,7 +11,7 @@ class EatCommand(Command):
     _FOODS = {
         "_default": "🍗 Hai mangiato {food}!\n[i]Ma non è successo nulla.[/i]",
         
-        #sezione nonna
+        # Sezione nonna
         "tutto": "👵🏻 Hai mangiato {food}. Si vede che hai gradito il pasto!\n[i]Tua nonna ti serve un'altra"
                  " porzione.[/i]",
         "poco": "👵🏻 Hai mangiato davvero {food}! \n[i]Tua nonna è molto arrabbiata e ferita nell'orgoglio."
@@ -19,7 +19,7 @@ class EatCommand(Command):
         "nonna": "👵🏻 Hai mangiato tua {food}. In qualche modo, continua a cucinarti cibo anche da dentro la"
                  " pancia.\n[i]This can't end well...[/i]",
         
-        #sezione caffé (ce n'erano troppi, con gli accenti e il resto)
+        # Sezione caffé (ce n'erano troppi, con gli accenti e il resto)
         "caffè": "☕️ Oh, no! Questo era il {food} della Peppina!\n[i]Ha provato col tritolo, salti in aria col"
                  " {food}.[/i]",
         "caffé": "☕️ Oh, no! Questo era il {food} della Peppina!\n[i]Ha provato col tritolo, salti in aria col"
@@ -31,14 +31,15 @@ class EatCommand(Command):
         "kaffé": "☕️ Ma BUONGIORNISSIMOOO !!!!\n[i]Non si può iniziare la giornata senza un buon {food} !![/i]",
         "kaffe": "☕️ Ma BUONGIORNISSIMOOO !!!!\n[i]Non si può iniziare la giornata senza un buon {food} !![/i]",
         
-        #sezione in cui mangi gli utenti
+        # Sezione in cui mangi i membri Royal Games
         "balu": "🚹 Hai mangiato {food}. \n[i]Sa di snado.[/i]",
         "balubis": "🚹 Hai mangiato {food}. \n[i]Sa di acqua calda.[/i]",
-        "chiara": "🚺 Hai mangiato {food}. \n[i]Sa un po' di biscotto, ma per lo più sa di curcuma, pepe e spezie varie.[/i]",
+        "chiara": "🚺 Hai mangiato {food}. \n[i]Sa un po' di biscotto, ma per lo più sa di curcuma, pepe e spezie"
+                  " varie.[/i]",
         "marco": "🚹 Hai mangiato {food}. \n[i]Sa di carlino <.<[/i]",
-        "steffo": "🚹 Hai mangiato {food}. \n[i]Sa di gelato e di Coca Cola.[/i]",
+        "steffo": "🚹 Hai mangiato {food}. \n[i]Sa di gelato e di Coca-Cola.[/i]",
         
-        #altro
+        # Altro
         "tonnuooooooro": "👻 Il {food} che hai mangiato era posseduto.\n[i]Spooky![/i]",
         "uranio": "☢️ L'{food} che hai mangiato era radioattivo.\n[i]Stai brillando di verde![/i]",
         "pollo": '🍗 Il {food} che hai appena mangiato proveniva dallo spazio.\n[i]Coccodè?[/i]',
@@ -83,12 +84,6 @@ class EatCommand(Command):
         "bot": "🤖 Come osi provare a mangiarmi?! \n[i]Il {food} è arrabbiato con te.[/i]",
         "mela": "🍎 Hai mangiato una Mela, e hai fatto bene perché una mela al giorno toglie il medico di torno!\n"
                 "[i]Adesso sei molto più sano[/i]",
-        "tutto": "👵🏻 Hai mangiato {food}. Si vede che hai gradito il pasto!\n[i]Tua nonna ti serve un'altra"
-                 " porzione.[/i]",
-        "caffè": "☕️ Oh, no! Questo era il {food} della Peppina!\n[i]Ha provato col tritolo, salti in aria col"
-                 " caffè.[/i]",
-        "caffé": "☕️ Oh, no! Questo era il {food} della Peppina!\n[i]Ha provato col tritolo, salti in aria col"
-                 " caffè.[/i]",
         "redbull": "🍾 Hai mangiato {food}.\n[i]Adesso puoi volare![/i]",
         "red bull": "🍾 Hai mangiato {food}.\n[i]Adesso puoi volare![/i]",
         "birra": "🍺 Hai mangiato {food}.\n[i]Adesso sei un povero barbone alcolizzato.[/i]",
