@@ -51,6 +51,10 @@ class EatCommand(Command):
                  " caffè.[/i]",
         "caffé": "☕️ Oh, no! Questo era il {food} della Peppina!\n[i]Ha provato col tritolo, salti in aria col"
                  " caffè.[/i]",
+        "redbull": "🍾 Hai mangiato {food}.\n[i] Adesso puoi volare![/i]",
+        "red bull": "🍾 Hai mangiato {food}.\n[i] Adesso puoi volare![/i]",
+        "birra": "🍺 Hai mangiato {food}.\n [i] Adesso sei un povero barbone alcolizzato",
+        "cacca": "💩 Che schifo! Hai mangiato {food}!\n [i] Allontati per favore [/i]",
     }
 
     async def run(self, args: CommandArgs, data: CommandData) -> None:
