@@ -18,6 +18,10 @@ class EatCommand(Command):
                 " Vergognati![/i]",
         "nonna": "👵🏻 Hai mangiato tua {food}. In qualche modo, continua a cucinarti cibo anche da dentro la"
                  " pancia.\n[i]This can't end well...[/i]",
+        "qualcosa di non cucinato dalla nonna": "👵🏻 Hai mangiato {food}!\n[i]Potresti essere appena stato "
+                                                "diseredato[/i]",
+        "qualcosa di non preparato dalla nonna": "👵🏻 Hai mangiato {food}!\n[i]Potresti essere appena stato "
+                                                "diseredato[/i]",
         
         # Sezione caffé (ce n'erano troppi, con gli accenti e il resto)
         "caffè": "☕️ Oh, no! Questo era il {food} della Peppina!\n[i]Ha provato col tritolo, salti in aria col"
@@ -33,10 +37,17 @@ class EatCommand(Command):
         
         # Sezione in cui mangi i membri Royal Games
         "balu": "🚹 Hai mangiato {food}. \n[i]Sa di snado.[/i]",
+        "evilbalu": "🚹 Hai mangiato {food}. \n[i]Sa di snado.[/i]",
         "balubis": "🚹 Hai mangiato {food}. \n[i]Sa di acqua calda.[/i]",
+        "goodbalu": "🚹 Hai mangiato {food}. \n[i]Sa di acqua calda.[/i]",
         "chiara": "🚺 Hai mangiato {food}. \n[i]Sa un po' di biscotto, ma per lo più sa di curcuma, pepe e spezie"
                   " varie.[/i]",
+        "fabio": "🚹 Hai mangiato {food}. \n[i]Sa di gelatina tuttigusti+1[/i]",
+        "proto": "🚹 Hai mangiato {food}. \n[i]Sa di gelatina tuttigusti+1[/i]",
         "marco": "🚹 Hai mangiato {food}. \n[i]Sa di carlino <.<[/i]",
+        "mallllco": "🚹 Hai mangiato {food}. \n[i]Sa di carlino <.<[/i]",
+        "max": "🚹 Hai mangiato {food}. \n[i]Sa di merda[/i]",
+        "maxsensei": "🚹 Hai mangiato {food}. \n[i]Sa di merda[/i]",
         "steffo": "🚹 Hai mangiato {food}. \n[i]Sa di gelato e di Coca-Cola.[/i]",
         
         # Altro
@@ -88,6 +99,17 @@ class EatCommand(Command):
         "red bull": "🍾 Hai mangiato {food}.\n[i]Adesso puoi volare![/i]",
         "birra": "🍺 Hai mangiato {food}.\n[i]Adesso sei un povero barbone alcolizzato.[/i]",
         "cacca": "💩 Che schifo! Hai mangiato {food}!\n[i]Allontati per favore, PLEH![/i]",
+        "acqua": "💧 Hai bevuto un po' d'{food}. \n[i]Ti depura e ti fa fare tanta plin plin![/i}",
+        "insetto": "🐞 Hai mangiato un {food}. \n[i]Dicono che sia il cibo del futuro, però fa un po' schifo[/i]",
+        "bug": "👾 Bravo, hai mangiato un {food}! Il tuo programma funziona un po' meglio.\n[i] il problema è che"
+               "ne sono comparsi altri tre[/i]",
+        "troppo": "⚠️ Hai mangiato {food}! \n[i]Hai un terribile mal di pancia[/i]",
+        "lemon": "🍋 Life gave you {food}s, so you ate them!\n[i]Sono un po' bruschi, ma commestibili[/i]",
+        "lemons": "🍋 Life gave you {food}, so you ate them!\n[i]Sono un po' bruschi, ma commestibili[/i]",
+        "bomba": "💣 Hai mangiato una boma. Speriamo fosse solo calorica!\n[i]3... 2... 1...[/i]",
+        "re": "👑 Hai mangiato il {food}avversario! \n[i]Scaccomatto![/i]",
+        "cactus": "🌵 Hai mangiato un {food}. \n[i]Gli hai tolto le spine prima, vero?[/i]",
+        "kiwi": "🥝 Hai mangiato un {food}! \n[i] Li uoi qvei k-\n Li vuoi kuei uiw- \n Vabbè, avete capito[/i]",
     }
 
     async def run(self, args: CommandArgs, data: CommandData) -> None:
