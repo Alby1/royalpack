@@ -114,8 +114,8 @@ class EatCommand(Command):
         "troppo": "⚠️ Hai mangiato {food}!\n[i]Hai un terribile mal di pancia.[/i]",
         "lemon": "🍋 Life gave you {food}s, so you ate them!\n[i]Sono un po' bruschi, ma commestibili.[/i]",
         "lemons": "🍋 Life gave you {food}, so you ate them!\n[i]Sono un po' bruschi, ma commestibili.[/i]",
-        "bomba": "💣 Hai mangiato una boma. Speriamo fosse solo calorica!\n[i]3... 2... 1...[/i]",
-        "re": "👑 Hai mangiato il {food}avversario! \n[i]Scacco matto![/i]",
+        "bomba": "💣 Hai mangiato una {food}. Speriamo fosse solo calorica!\n[i]3... 2... 1...[/i]",
+        "re": "👑 Hai mangiato il {food} avversario! \n[i]Scacco matto![/i]",
         "cactus": "🌵 Hai mangiato un {food}.\n[i]Gli hai tolto le spine prima, vero?[/i]",
         "kiwi": "🥝 Hai mangiato un {food}!\n[i]Li uoi qvei k-\n Li vuoi kuei uiw- \n Vabbè, avete capito![/i]",
     }
