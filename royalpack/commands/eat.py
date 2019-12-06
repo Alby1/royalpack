@@ -50,6 +50,12 @@ class EatCommand(Command):
         "maxsensei": "🚹 Hai mangiato {food}.\n[i]Sa di merda.[/i]",
         "steffo": "🚹 Hai mangiato {food}.\n[i]Sa di gelato e di Coca-Cola.[/i]",
         
+        #Sezione delle supercazzole
+        "antani": "Hai mangiato {food}. \n[i]Con tarapia tapioco o scherziamo? No, mi permetta. Noi siamo in 4."
+        "Come se fosse antani anche per lei soltanto in due, oppure in quattro anche scribàcchi confaldina?"
+        "Come antifurto, per esempio.[/i]",
+        "indice": "Hai mangiato l'{food}. \n[i]Ecco, lo alzi. Lo vede, lo vede che stuzzica?[/i]",
+        
         # Altro
         "tonnuooooooro": "👻 Il {food} che hai mangiato era posseduto.\n[i]Spooky![/i]",
         "uranio": "☢️ L'{food} che hai mangiato era radioattivo.\n[i]Stai brillando di verde![/i]",
