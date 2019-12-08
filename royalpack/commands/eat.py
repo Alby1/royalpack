@@ -105,12 +105,12 @@ class EatCommand(Command):
         "red bull": "🍾 Hai mangiato {food}.\n[i]Adesso puoi volare![/i]",
         "birra": "🍺 Hai mangiato {food}.\n[i]Adesso sei un povero barbone alcolizzato.[/i]",
         "cacca": "💩 Che schifo! Hai mangiato {food}!\n[i]Allontati per favore, PLEH![/i]",
-        "cochina": "🥫 Hai bevuto una {food}. \n[i]Bella fresca.[\i]",
-        "little salami" "🥓 Mmmh, tasty!\n[i]Cats can have {food} too![/i]",
-        "a little salami" "🥓 Mmmh, tasty!\n[i]Cats can have {food} too![/i]",
+        "cochina": "🥫 Hai bevuto una {food}. \n[i]Bella fresca.[/i]",
+        "little salami": "🥓 Mmmh, tasty!\n[i]Cats can have {food} too![/i]",
+        "a little salami": "🥓 Mmmh, tasty!\n[i]Cats can have {food} too![/i]",
         "acqua": "💧 Hai bevuto un po' d'{food}.\n[i]Ti depura e ti fa fare tanta plin plin![/i}",
         "insetto": "🐞 Hai mangiato un {food}.\n[i]Dicono che sia il cibo del futuro, però fa un po' schifo.[/i]",
-        "bug": "👾 Bravo, hai mangiato un {food}! Il tuo programma funziona un po' meglio.\n[i] il problema è che"
+        "bug": "👾 Bravo, hai mangiato un {food}! Il tuo programma funziona un po' meglio.\n[i]Il problema è che"
                "ne sono comparsi altri tre.[/i]",
         "troppo": "⚠️ Hai mangiato {food}!\n[i]Hai un terribile mal di pancia.[/i]",
         "lemon": "🍋 Life gave you {food}s, so you ate them!\n[i]Sono un po' bruschi, ma commestibili.[/i]",
