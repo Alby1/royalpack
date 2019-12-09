@@ -5,7 +5,7 @@
     version = "5.1.6"
     description = "A Royalnet command pack for the Royal Games community"
     authors = ["Stefano Pigozzi <ste.pigozzi@gmail.com>"]
-    license = "AGPL-3.0"
+    license = "AGPL-3.0+"
     readme = "README.md"
     homepage = "https://github.com/Steffo99/royalpack"
     documentation = "https://gh.steffo.eu/royalpack/"
@@ -23,7 +23,19 @@
     riotwatcher = "^2.7.1"
     royalspells = "^3.2"
 
-    royalnet = {version = "^5.1.4", extras = ["telegram", "discord", "alchemy_easy", "bard", "constellation", "sentry", "herald", "coloredlogs"]}
+    [tool.poetry.dependencies.royalnet]
+        version = "^5.1.4"
+        # Maybe... there is a way to make these selectable?
+        extras = [
+            "telegram",
+            "discord",
+            "alchemy_easy",
+            "bard",
+            "constellation",
+            "sentry",
+            "herald",
+            "coloredlogs"
+        ]
 
 # Development dependencies
 [tool.poetry.dev-dependencies]
