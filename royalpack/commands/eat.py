@@ -39,9 +39,9 @@ class EatCommand(Command):
         "steffo": "🚹 Hai mangiato {food}.\n[i]Sa di gelato e di Coca-Cola.[/i]",
         
         #Sezione delle supercazzole
-        "antani": "Hai mangiato {food}. \n[i]Con tarapia tapioco o scherziamo? No, mi permetta. Noi siamo in 4."
-        "Come se fosse antani anche per lei soltanto in due, oppure in quattro anche scribàcchi confaldina?"
-        "Come antifurto, per esempio.[/i]",
+        "antani": "❔ Hai mangiato {food}. \n[i]Con tarapia tapioco o scherziamo? No, mi permetta. Noi siamo in 4.\n"
+                  "Come se fosse antani anche per lei soltanto in due, oppure in quattro anche scribàcchi confaldina?\n"
+                  "Come antifurto, per esempio.[/i]"
         "indice": "☝️ Hai mangiato l'{food}. \n[i]Ecco, lo alzi. Lo vede, lo vede che stuzzica?[/i]",
         
         #sezione con piante e anmali
@@ -98,6 +98,18 @@ class EatCommand(Command):
         "redbull": "🍾 Hai mangiato {food}.\n[i]Adesso puoi volare![/i]",
         "red bull": "🍾 Hai mangiato {food}.\n[i]Adesso puoi volare![/i]",
         
+        # Distribuzioni
+        "linux": "🐧 Hai mangiato {food}.\n[i]Senti systemd battere nel tuo cuore, adesso.[/i]",
+        "arch": "🐧 Hai mangiato {food}, btw.\n[i]Ti senti più vicino a pacman, adesso.[/i]",
+        "arch linux": "🐧 Hai mangiato {food}, btw.\n[i]Ti senti più vicino a pacman, adesso.[/i]",
+        "ubuntu": "🐧 Hai mangiato {food}.\n[i]Canonical è fiera di te.[/i]",
+        "debian": "🐧 Hai mangiato {food}.\n[i]Hai ancora fame.[/i]",
+        "gentoo": "🐧 Hai mangiato {food}.\n[i]Sta ricompilando il tuo stomaco.[/i]",
+        "fedora": "🐧 Hai mangiato {food}.\n[i]Se IBM non rovina Fedora mi mangio il cappello.[/i]",
+        "red hat": "🐧 Hai mangiato {food}.\n[i]La tua anima appartiene a IBM, ora.[/i]",
+        "redhat": "🐧 Hai mangiato {food}.\n[i]La tua anima appartiene a IBM, ora.[/i]",
+        "linux from scratch": "🐧 Hai mangiato {food}.\n[i]Sei diventato un puzzle.[/i]",
+        
         # Altro
         "demone": "👿 Hai mangiato un {food}. Non l'ha presa bene...\n[i]Hai terribili bruciori di stomaco.[/i]",
         "diavolo": "👿 Hai mangiato un {food}. Non l'ha presa bene...\n[i]Hai terribili bruciori di stomaco.[/i]",
@@ -125,8 +137,7 @@ class EatCommand(Command):
         "niente": "⬜️ Non hai mangiato {food}.\n[i]Hai ancora più fame.[/i]",
         "nulla": "⬜️ Non hai mangiato {food}.\n[i]Hai ancora più fame.[/i]",
         "torta": "⬜️ Non hai mangiato niente.\n[i]La {food} è una menzogna![/i]",
-        "cake": "⬜️ Non hai mangiato niente.\n[i]The {food} is a lie![/i]",
-        
+        "cake": "⬜️ Non hai mangiato niente.\n[i]The {food} is a lie![/i]",        
     }
 
     async def run(self, args: CommandArgs, data: CommandData) -> None:
