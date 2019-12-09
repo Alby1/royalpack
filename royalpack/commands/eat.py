@@ -54,7 +54,7 @@ class EatCommand(Command):
         "antani": "Hai mangiato {food}. \n[i]Con tarapia tapioco o scherziamo? No, mi permetta. Noi siamo in 4."
         "Come se fosse antani anche per lei soltanto in due, oppure in quattro anche scribàcchi confaldina?"
         "Come antifurto, per esempio.[/i]",
-        "indice": "Hai mangiato l'{food}. \n[i]Ecco, lo alzi. Lo vede, lo vede che stuzzica?[/i]",
+        "indice": "☝️ Hai mangiato l'{food}. \n[i]Ecco, lo alzi. Lo vede, lo vede che stuzzica?[/i]",
         
         # Altro
         "tonnuooooooro": "👻 Il {food} che hai mangiato era posseduto.\n[i]Spooky![/i]",
@@ -110,7 +110,7 @@ class EatCommand(Command):
         "a little salami": "🥓 Mmmh, tasty!\n[i]Cats can have {food} too![/i]",
         "acqua": "💧 Hai bevuto un po' d'{food}.\n[i]Ti depura e ti fa fare tanta plin plin![/i}",
         "insetto": "🐞 Hai mangiato un {food}.\n[i]Dicono che sia il cibo del futuro, però fa un po' schifo.[/i]",
-        "bug": "👾 Bravo, hai mangiato un {food}! Il tuo programma funziona un po' meglio.\n[i]Il problema è che"
+        "bug": "👾 Bravo, hai mangiato un {food}! Il tuo programma funziona un po' meglio.\n[i]Il problema è che "
                "ne sono comparsi altri tre.[/i]",
         "troppo": "⚠️ Hai mangiato {food}!\n[i]Hai un terribile mal di pancia.[/i]",
         "lemon": "🍋 Life gave you {food}s, so you ate them!\n[i]Sono un po' bruschi, ma commestibili.[/i]",
@@ -119,6 +119,10 @@ class EatCommand(Command):
         "re": "👑 Hai mangiato il {food} avversario! \n[i]Scacco matto![/i]",
         "cactus": "🌵 Hai mangiato un {food}.\n[i]Gli hai tolto le spine prima, vero?[/i]",
         "kiwi": "🥝 Hai mangiato un {food}!\n[i]Li uoi qvei k-\n Li vuoi kuei uiw- \n Vabbè, avete capito![/i]",
+        "spam": "🥫 Hai mangiato {food}. La famosa carne in gelatina, ovviamente!\n[i]A questo proposito, di "
+                "sicuro sarai interessato all'acquisto di 1087 scatole di Simmenthal in offerta speciale![/i]",
+        "ass": "🕳 Hai mangiato {food}./n[i]Bleah! Lo sai cosa fa quel coso per sopravvivere?[/i]",
+        
     }
 
     async def run(self, args: CommandArgs, data: CommandData) -> None:
