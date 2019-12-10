@@ -23,7 +23,7 @@
     riotwatcher = "^2.7.1"
     royalspells = "^3.2"
 
-    royalnet = {version = "^5.1.4", extras = ["telegram", "discord", "alchemy_easy", "bard", "constellation", "sentry", "herald", "coloredlogs"]}
+    royalnet = {version = "^5.1.6", extras = ["telegram", "discord", "alchemy_easy", "bard", "constellation", "sentry", "herald", "coloredlogs"]}
 
 # Development dependencies
 [tool.poetry.dev-dependencies]
