@@ -1,0 +1,29 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredPackages">
+        <value>
+          <list size="1">
+            <item index="0" class="java.lang.String" itemvalue="discord_py" />
+          </list>
+        </value>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="commands.commanddata.CommandData.update" />
+          <option value="commands.commanddata.CommandData.message" />
+          <option value="royalnet.backpack.tables.users.User.telegram" />
+          <option value="royalnet.backpack.tables.users.User.discord" />
+          <option value="royalnet.backpack.tables.users.User.bio" />
+          <option value="royalnet.backpack.tables.users.User.leagueoflegends" />
+          <option value="royalnet.backpack.tables.users.User.diario_quoted" />
+          <option value="royalnet.backpack.tables.users.User.diario_created" />
+          <option value="royalnet.backpack.tables.users.User.trivia_score" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>
