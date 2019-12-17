@@ -76,11 +76,11 @@ class ReminderCommand(Command):
         else:
             raise UnsupportedError("This command does not support the current interface.")
         creator = await data.get_author()
-        reminder = self.interface.alchemy.Reminder(creator=creator,
-                                                   interface_name=self.interface.name,
-                                                   interface_data=interface_data,
-                                                   datetime=date,
-                                                   message=reminder_text)
+        reminder = self.interface.alchemy.get(Reminder)(creator=creator,
+                                                        interface_name=self.interface.name,
+                                                        interface_data=interface_data,
+                                                        datetime=date,
+                                                        message=reminder_text)
         self.interface.loop.create_task(self._remind(reminder))
         data.session.add(reminder)
         await asyncify(data.session.commit)

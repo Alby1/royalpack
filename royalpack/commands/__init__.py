@@ -23,7 +23,7 @@ from .emojify import EmojifyCommand
 from .leagueoflegends import LeagueoflegendsCommand
 from .diarioquote import DiarioquoteCommand
 # from .mp3 import Mp3Command
-from .peertube import PeertubeCommand
+from .peertubeupdates import PeertubeUpdatesCommand
 from .googlevideo import GooglevideoCommand
 from .yahoovideo import YahoovideoCommand
 from .userinfo import UserinfoCommand
@@ -58,7 +58,7 @@ available_commands = [
     LeagueoflegendsCommand,
     DiarioquoteCommand,
     # Mp3Command,
-    PeertubeCommand,
+    PeertubeUpdatesCommand,
     GooglevideoCommand,
     YahoovideoCommand,
     UserinfoCommand,

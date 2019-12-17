@@ -10,6 +10,7 @@ class YahoovideoCommand(PlayCommand):
 
     syntax = "{ricerca}"
 
-    _URL_FORMAT = "yvsearch:{url}"
+    async def get_url(self, args):
+        return f"yvsearch:{args.joined()}"
 
     # Too bad yvsearch: always finds nothing.

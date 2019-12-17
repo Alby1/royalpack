@@ -15,10 +15,10 @@ class PlayCommand(Command):
 
     syntax = "{url}"
 
-    _URL_FORMAT = "{url}"
+    async def get_url(self, args: CommandArgs):
+        return args.joined()
 
     async def run(self, args: CommandArgs, data: CommandData) -> None:
-        url = args.joined()
         # if not (url.startswith("http://") or url.startswith("https://")):
         #     raise CommandError(f"Il comando [c]{self.interface.prefix}play[/c] funziona solo per riprodurre file da"
         #                        f" un URL.\n"
@@ -27,11 +27,14 @@ class PlayCommand(Command):
         if self.interface.name == "discord":
             message: discord.Message = data.message
             guild: discord.Guild = message.guild
-            guild_id: Optional[int] = guild.id
+            if guild is None:
+                guild_id = None
+            else:
+                guild_id: Optional[int] = guild.id
         else:
             guild_id = None
         response: Dict[str, Any] = await self.interface.call_herald_event("discord", "discord_play",
-                                                                          url=self._URL_FORMAT.format(url=url),
+                                                                          url=await self.get_url(args),
                                                                           guild_id=guild_id)
 
         too_long: List[Dict[str, Any]] = response["too_long"]

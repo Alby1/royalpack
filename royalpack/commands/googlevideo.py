@@ -10,6 +10,7 @@ class GooglevideoCommand(PlayCommand):
 
     syntax = "{ricerca}"
 
-    _URL_FORMAT = "gvsearch:{url}"
+    async def get_url(self, args):
+        return f"gvsearch:{args.joined()}"
 
     # Too bad gvsearch: always finds nothing.

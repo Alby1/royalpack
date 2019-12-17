@@ -10,7 +10,7 @@ class EatCommand(Command):
 
     _FOODS = {
         "_default": "🍗 Hai mangiato {food}!\n[i]Ma non è successo nulla.[/i]",
-        
+
         # Sezione nonna
         "tutto": "👵🏻 Hai mangiato {food}. Si vede che hai gradito il pasto!\n[i]Tua nonna ti serve un'altra"
                  " porzione.[/i]",
@@ -21,8 +21,8 @@ class EatCommand(Command):
         "qualcosa di non cucinato dalla nonna": "👵🏻 Hai mangiato {food}!\n[i]Potresti essere appena stato "
                                                 "diseredato...[/i]",
         "qualcosa di non preparato dalla nonna": "👵🏻 Hai mangiato {food}!\n[i]Potresti essere appena stato "
-                                                "diseredato...[/i]",
-        
+                                                 "diseredato...[/i]",
+
         # Sezione in cui mangi i membri Royal Games
         "balu": "🚹 Hai mangiato {food}.\n[i]Sa di snado.[/i]",
         "evilbalu": "🚹 Hai mangiato {food}.\n[i]Sa di snado.[/i]",
@@ -37,14 +37,14 @@ class EatCommand(Command):
         "max": "🚹 Hai mangiato {food}.\n[i]Sa di merda.[/i]",
         "maxsensei": "🚹 Hai mangiato {food}.\n[i]Sa di merda.[/i]",
         "steffo": "🚹 Hai mangiato {food}.\n[i]Sa di gelato e di Coca-Cola.[/i]",
-        
-        #Sezione delle supercazzole
+
+        # Sezione delle supercazzole
         "antani": "❔ Hai mangiato {food}. \n[i]Con tarapia tapioco o scherziamo? No, mi permetta. Noi siamo in 4.\n"
                   "Come se fosse antani anche per lei soltanto in due, oppure in quattro anche scribàcchi confaldina?\n"
-                  "Come antifurto, per esempio.[/i]"
+                  "Come antifurto, per esempio.[/i]",
         "indice": "☝️ Hai mangiato l'{food}. \n[i]Ecco, lo alzi. Lo vede, lo vede che stuzzica?[/i]",
-        
-        #sezione con piante e anmali
+
+        # sezione con piante e anmali
         "cactus": "🌵 Hai mangiato un {food}.\n[i]Gli hai tolto le spine prima, vero?[/i]",
         "tango": "🌳 Hai mangiato un {food}, e un albero insieme ad esso.\n[i]Senti le tue ferite curarsi...[/i]",
         "gatto": "🐱 Vieni fermato prima di poter compiere questo gesto orribile.\n"
@@ -55,8 +55,8 @@ class EatCommand(Command):
         "ragno": "🕸 Hai mangiato un {food}.\n[i]Ewww![/i]",
         "crab": "🦀 Hai mangiato un {food}. {food} is gone!\n[i]Senti il tuo stomaco ballare.[/i]",
         "granchio": "🦀 Hai mangiato un {food}. {food} is gone!\n[i]Senti il tuo stomaco ballare.[/i]",
-        
-        #Sezione con il cibo "normale"
+
+        # Sezione con il cibo "normale"
         "zucca": "🎃 Hai mangiato una {food}. Solo che era una lanterna di Halloween.\n[i]Inizi a fare luce al"
                  " buio.[/i]",
         "mela": "🍎 Hai mangiato una Mela, e hai fatto bene perché una mela al giorno toglie il medico di torno!\n"
@@ -80,8 +80,8 @@ class EatCommand(Command):
         "gelato": "🍨 Mangiando del {food}, hai invocato Steffo.\n[i]Cedigli ora il tuo gelato.[/i]",
         "biscotto": "🍪 Hai mangiato un {food} di contrabbando.\n[i]L'Inquisizione non lo saprà mai![/i]",
         "biscotti": "🍪 Hai mangiato tanti {food} di contrabbando.\n[i]Attento! L'Inquisizione è sulle tue tracce![/i]",
-        
-        #Sezione delle bevande
+
+        # Sezione delle bevande
         "acqua": "💧 Hai bevuto un po' d'{food}.\n[i]Ti depura e ti fa fare tanta plin plin![/i}",
         "cochina": "🥫 Hai bevuto una {food}. \n[i]Bella fresca.[/i]",
         "caffè": "☕️ Oh, no! Questo era il {food} della Peppina!\n[i]Ha provato col tritolo, salti in aria col"
@@ -97,7 +97,7 @@ class EatCommand(Command):
         "birra": "🍺 Hai mangiato {food}.\n[i]Adesso sei un povero barbone alcolizzato.[/i]",
         "redbull": "🍾 Hai mangiato {food}.\n[i]Adesso puoi volare![/i]",
         "red bull": "🍾 Hai mangiato {food}.\n[i]Adesso puoi volare![/i]",
-        
+
         # Distribuzioni
         "linux": "🐧 Hai mangiato {food}.\n[i]Senti systemd battere nel tuo cuore, adesso.[/i]",
         "arch": "🐧 Hai mangiato {food}, btw.\n[i]Ti senti più vicino a pacman, adesso.[/i]",
@@ -109,7 +109,7 @@ class EatCommand(Command):
         "red hat": "🐧 Hai mangiato {food}.\n[i]La tua anima appartiene a IBM, ora.[/i]",
         "redhat": "🐧 Hai mangiato {food}.\n[i]La tua anima appartiene a IBM, ora.[/i]",
         "linux from scratch": "🐧 Hai mangiato {food}.\n[i]Sei diventato un puzzle.[/i]",
-        
+
         # Altro
         "demone": "👿 Hai mangiato un {food}. Non l'ha presa bene...\n[i]Hai terribili bruciori di stomaco.[/i]",
         "diavolo": "👿 Hai mangiato un {food}. Non l'ha presa bene...\n[i]Hai terribili bruciori di stomaco.[/i]",
@@ -137,7 +137,7 @@ class EatCommand(Command):
         "niente": "⬜️ Non hai mangiato {food}.\n[i]Hai ancora più fame.[/i]",
         "nulla": "⬜️ Non hai mangiato {food}.\n[i]Hai ancora più fame.[/i]",
         "torta": "⬜️ Non hai mangiato niente.\n[i]La {food} è una menzogna![/i]",
-        "cake": "⬜️ Non hai mangiato niente.\n[i]The {food} is a lie![/i]",        
+        "cake": "⬜️ Non hai mangiato niente.\n[i]The {food} is a lie![/i]",
     }
 
     async def run(self, args: CommandArgs, data: CommandData) -> None:
