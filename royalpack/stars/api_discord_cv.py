@@ -8,5 +8,5 @@ class ApiDiscordCvStar(PageStar):
     path = "/api/discord/cv"
 
     async def page(self, request: Request) -> JSONResponse:
-        response = await self.constellation.call_herald_event("discord", "discord_cv")
+        response = await self.interface.call_herald_event("discord", "discord_cv")
         return JSONResponse(response)
