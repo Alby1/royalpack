@@ -27,6 +27,8 @@ from .ahnonlosoio import AhnonlosoioCommand
 from .eat import EatCommand
 from .pmots import PmotsCommand
 from .peertube import PeertubeCommand
+from .eval import EvalCommand
+from .exec import ExecCommand
 
 # Enter the commands of your Pack here!
 available_commands = [
@@ -58,6 +60,8 @@ available_commands = [
     EatCommand,
     PmotsCommand,
     PeertubeCommand,
+    EvalCommand,
+    ExecCommand,
 ]
 
 # Don't change this, it should automatically generate __all__

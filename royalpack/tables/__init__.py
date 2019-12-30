@@ -9,6 +9,7 @@ from .triviascores import TriviaScore
 from .mmevents import MMEvent
 from .mmresponse import MMResponse
 from .leagueoflegends import LeagueOfLegends
+from .fiorygi import Fiorygi
 
 # Enter the tables of your Pack here!
 available_tables = [
@@ -21,7 +22,8 @@ available_tables = [
     TriviaScore,
     MMEvent,
     MMResponse,
-    LeagueOfLegends
+    LeagueOfLegends,
+    Fiorygi,
 ]
 
 # Don't change this, it should automatically generate __all__

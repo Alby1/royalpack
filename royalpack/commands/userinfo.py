@@ -36,6 +36,10 @@ class UserinfoCommand(Command):
             "",
         ]
 
+        if user.fiorygi:
+            r.append(f"{user.fiorygi}")
+            r.append("")
+
         # Bios are a bit too long
         # if user.bio:
         #     r.append(f"{user.bio}")
@@ -58,6 +62,6 @@ class UserinfoCommand(Command):
 
         if user.trivia_score:
             r.append(f"Trivia: [b]{user.trivia_score.correct_answers}[/b] risposte corrette / "
-                     f"{user.trivia_score.total_answers}) totali")
+                     f"{user.trivia_score.total_answers} totali")
 
         await data.reply("\n".join(r))

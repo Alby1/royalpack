@@ -30,9 +30,26 @@ class WikiPage:
         return Column(String, nullable=False, default="markdown")
 
     @declared_attr
-    def css(self):
+    def theme(self):
         return Column(String)
 
     @property
     def page_short_id(self):
         return to_urluuid(self.page_id)
+
+    def json_list(self) -> dict:
+        return {
+            "page_id": str(self.page_id),
+            "page_short_id": self.page_short_id,
+            "title": self.title
+        }
+
+    def json_full(self) -> dict:
+        return {
+            "page_id": str(self.page_id),
+            "page_short_id": self.page_short_id,
+            "title": self.title,
+            "contents": self.contents,
+            "format": self.format,
+            "theme": self.theme,
+        }
