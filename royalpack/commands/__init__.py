@@ -27,6 +27,7 @@ from .ahnonlosoio import AhnonlosoioCommand
 from .eat import EatCommand
 from .pmots import PmotsCommand
 from .peertube import PeertubeCommand
+from .funkwhale import FunkwhaleCommand
 from .eval import EvalCommand
 from .exec import ExecCommand
 
