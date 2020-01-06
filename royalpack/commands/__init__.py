@@ -63,6 +63,7 @@ available_commands = [
     PeertubeCommand,
     EvalCommand,
     ExecCommand,
+    FunkwhaleCommand,
 ]
 
 # Don't change this, it should automatically generate __all__
