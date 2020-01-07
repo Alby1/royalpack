@@ -47,6 +47,7 @@ class EatCommand(Command):
         # sezione con piante e anmali
         "cactus": "🌵 Hai mangiato un {food}.\n[i]Gli hai tolto le spine prima, vero?[/i]",
         "tango": "🌳 Hai mangiato un {food}, e un albero insieme ad esso.\n[i]Senti le tue ferite curarsi...[/i]",
+        "foglia": "🍁 Hai mangiato la {food}.\n[i]A te non la si fa![/i]",
         "gatto": "🐱 Vieni fermato prima di poter compiere questo gesto orribile.\n"
                  "[i]Il {food} verrà pettato da tutti per farlo riavere dal trauma.[/i]",
         "3 porcellini": "🐷 Hai mangiato i {food}.\n[i]La casa di mattoni non è bastata a fermarti![/i]",
@@ -109,8 +110,20 @@ class EatCommand(Command):
         "red hat": "🐧 Hai mangiato {food}.\n[i]La tua anima appartiene a IBM, ora.[/i]",
         "redhat": "🐧 Hai mangiato {food}.\n[i]La tua anima appartiene a IBM, ora.[/i]",
         "linux from scratch": "🐧 Hai mangiato {food}.\n[i]Sei diventato un puzzle.[/i]",
-
+        
+        # Citazioni da film (nello specifico dai Blues Brothers)
+        "pane bianco tostato liscio, quattro polli fritti e una coca": "🕶 Tu e tuo fratello avete ordinato {food}."
+        " Il cuoco vi ha riconosciuto e vuole tornare a suonare nella vostra band.\n[i]Sua moglie gliene canta"
+        " quattro (letteralmente), ma non riesce a fargli cambiare idea. Siete in missione per conto di Dio![/i]",
+        "pane bianco tostato liscio": "🕶 Tu e tuo fratello avete ordinato {food}, quattro polli fritti e una coca."
+        " Il cuoco vi ha riconosciuto e vuole tornare a suonare nella vostra band.\n[i]Sua moglie gliene canta"
+        " quattro (letteralmente), ma non riesce a fargli cambiare idea. Siete in missione per conto di Dio![/i]",
+        "quattro polli fritti e una coca": "🕶 Tu e tuo fratello avete ordinato pane bianco tostato liscio, {food}."
+        " Il cuoco vi ha riconosciuto e vuole tornare a suonare nella vostra band.\n[i]Sua moglie gliene canta"
+        " quattro (letteralmente), ma non riesce a fargli cambiare idea. Siete in missione per conto di Dio![/i]",
+        
         # Altro
+        "vendetta": "😈 Ti sei gustato la tua {food}.\n[i]Deliziosa, se servita fredda![/i]",
         "demone": "👿 Hai mangiato un {food}. Non l'ha presa bene...\n[i]Hai terribili bruciori di stomaco.[/i]",
         "diavolo": "👿 Hai mangiato un {food}. Non l'ha presa bene...\n[i]Hai terribili bruciori di stomaco.[/i]",
         "cacca": "💩 Che schifo! Hai mangiato {food}!\n[i]Allontati per favore, PLEH![/i]",
@@ -121,12 +134,15 @@ class EatCommand(Command):
         "bot": "🤖 Come osi provare a mangiarmi?!\n[i]Il {food} è arrabbiato con te.[/i]",
         "royal bot": "🤖 Come osi provare a mangiarmi?!\n[i]Il {food} è arrabbiato con te.[/i]",
         "re": "👑 Hai mangiato il {food} avversario! \n[i]Scacco matto![/i]",
+        "furry": "🐕 Hai mangiato {food}.\n[i]OwO[/i]",
         "polvere": "☁️ Hai mangiato la {food}.\n[i]Ti hanno proprio battuto![/i]",
         "giaroun": "🥌 Il {food} che hai mangiato era duro come un {food}.\n[i]Stai soffrendo di indigestione![/i]",
         "giarone": "🥌 Il {food} che hai mangiato era duro come un {food}.\n[i]Stai soffrendo di indigestione![/i]",
         "sasso": "🥌 Il {food} che hai mangiato era duro come un {food}.\n[i]Stai soffrendo di indigestione![/i]",
         "bomba": "💣 Hai mangiato una {food}. Speriamo fosse solo calorica!\n[i]3... 2... 1...[/i]",
         "ass": "🕳 Hai mangiato {food}./n[i]Bleah! Lo sai cosa fa quel coso per sopravvivere?[/i]",
+        "onion": "🗞 You ate the {food}. Ci sei proprio cascato!\n [i]Hai mai creduto a una notizia di Lercio,"
+                 " invece?[/i]",
         "uranio": "☢️ L'{food} che hai mangiato era radioattivo.\n[i]Stai brillando di verde![/i]",
         "tide pod": "☣️ I {food} che hai mangiato erano buonissimi.\n[i]Stai sbiancando![/i]",
         "tide pods": "☣️ I {food} che hai mangiato erano buonissimi.\n[i]Stai sbiancando![/i]",
