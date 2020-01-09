@@ -19,6 +19,8 @@ class MarkovCommand(Command):
         files: List[str] = tuple(os.walk(self.config["Markov"]["models_directory"]))[0][2]
         for file in files:
             match = re.match("(\S+)\.json", file)
+            if match is None:
+                continue
             model_name = match.group(1)
             with open(os.path.join(self.config["Markov"]["models_directory"], file)) as f:
                 self._texts[model_name] = markovify.NewlineText.from_json(f.read())
