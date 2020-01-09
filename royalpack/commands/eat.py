@@ -154,6 +154,7 @@ class EatCommand(Command):
         "nulla": "⬜️ Non hai mangiato {food}.\n[i]Hai ancora più fame.[/i]",
         "torta": "⬜️ Non hai mangiato niente.\n[i]La {food} è una menzogna![/i]",
         "cake": "⬜️ Non hai mangiato niente.\n[i]The {food} is a lie![/i]",
+        "markov": "🗨 Stai cercando di mangiare... un matematico russo di nome {food}?\n[i]Lo trovi un po' indigesto.[/i]",
     }
 
     async def run(self, args: CommandArgs, data: CommandData) -> None:

@@ -2,7 +2,7 @@
 
 [tool.poetry]
     name = "royalpack"
-    version = "5.2.3"
+    version = "5.2.4"
     description = "A Royalnet command pack for the Royal Games community"
     authors = ["Stefano Pigozzi <ste.pigozzi@gmail.com>"]
     license = "AGPL-3.0+"
@@ -22,6 +22,7 @@
 
     riotwatcher = "^2.7.1"
     royalspells = "^3.2"
+    markovify = "^0.8.0"
 
     [tool.poetry.dependencies.royalnet]
         version = "^5.1.6"
@@ -34,7 +35,8 @@
             "constellation",
             "sentry",
             "herald",
-            "coloredlogs"
+            "coloredlogs",
+            "matrix"
         ]
 
 # Development dependencies

@@ -1,7 +1,7 @@
 # Royalnet ignores
 config*.toml
 downloads/
-
+markov/
 
 # Python ignores
 **/__pycache__/
@@ -11,4 +11,3 @@ dist/
 
 # PyCharm ignores
 .idea/
-
